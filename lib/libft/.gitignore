@@ -1,0 +1,17 @@
+.vscode/
+.vscode/c_cpp_properties.json
+sujet/libft_fr.subject.pdf
+a.out
+main.c
+./vscode/*
+*.exe
+test.c
+test_*.c
+*.swp
+a.out.dSYM/Contents/Info.plist
+libft.a
+*.o
+amain.c
+.objs/
+*.a
+.idea
