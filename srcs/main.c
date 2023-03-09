@@ -12,11 +12,11 @@
 
 #include "fdf.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_fdf	fdf_data;
 
-	if (argc != 0)
+	if (argc != 2)
 	{
 		ft_putstr_fd("ERROR : no file provided\n", STDERR_FILENO);
 		exit(1);

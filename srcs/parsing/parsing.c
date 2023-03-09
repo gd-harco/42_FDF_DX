@@ -1,5 +1,18 @@
-#include "parsing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gd-harco <gd-harco@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/03/09 16:39:11 by gd-harco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "fdf.h"
+
+static t_vec3d	*fill_map_line(t_map_info *v_map, size_t cur_line, t_list *line_list);
 static t_list	*put_file_in_list(int fd);
 static void		get_vmap(t_list *list, t_map_info *v_map);
 static size_t	get_nb_word(char *vstr);
@@ -47,6 +60,8 @@ static t_list	*put_file_in_list(int fd)
 
 static void	get_vmap(t_list *list, t_map_info *v_map)
 {
+	size_t	curr_line;
+
 	if (list == NULL)
 		exit(1);
 	v_map->height = ft_lstsize(list);
@@ -55,6 +70,13 @@ static void	get_vmap(t_list *list, t_map_info *v_map)
 	v_map->map_to_draw = malloc(sizeof (t_vec3d *) * v_map->height);
 	if (v_map->map == NULL)
 		exit(1);
+	curr_line = 0;
+	while (curr_line < v_map->height)
+	{
+		v_map->map[curr_line] = fill_map_line(v_map, curr_line, list);
+		list = list->next;
+		curr_line++;
+	}
 }
 
 static size_t	get_nb_word(char *str)
@@ -74,4 +96,24 @@ static size_t	get_nb_word(char *str)
 			i++;
 	}
 	return (nb_word);
+}
+
+static t_vec3d	*fill_map_line(t_map_info *v_map, size_t cur_line, t_list *line_list)
+{
+	t_vec3d	*line_of_vec;
+	size_t	i;
+	char	**char_line;
+
+	char_line = ft_split((char *)line_list->content, ' ');
+	line_of_vec = malloc(sizeof (t_vec3d) * v_map->width);
+	i = 0;
+	while (i < v_map->width)
+	{
+		line_of_vec[i].y = (float)cur_line;
+		line_of_vec[i].x = (float)i;
+		line_of_vec[i].z = (float)ft_atoi(char_line[i]);
+		i++;
+	}
+	ft_free_split(char_line);
+	return (line_of_vec);
 }
