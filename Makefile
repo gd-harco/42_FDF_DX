@@ -22,8 +22,9 @@ MLX				=	lib/mlx/mlx.a
 
 HEADERS_LIST	=	fdf.h parsing.h
 
-SRCS_LIST		=	main.c		\
-					parsing/parsing.c
+SRCS_LIST		=	main.c				\
+					parsing/parsing.c	\
+					matrix/matrix_creation.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -35,7 +36,7 @@ CC				=	cc
 
 CFLAGS			=	 -Wall -Werror -Wextra -g3
 
-FRAMEWORKS		=	-Llib/libft -Llib/mlx -lft -lmlx
+FRAMEWORKS		=	-Llib/libft -Llib/mlx -lft -lmlx -lXext -lX11
 
 
 # ---- Commands ---- #
@@ -73,6 +74,7 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
 					${MKDIR} ${DIR_OBJS}/parsing
+					${MKDIR} ${DIR_OBJS}/matrix
 
 # ---- Usual Rules ---- #
 

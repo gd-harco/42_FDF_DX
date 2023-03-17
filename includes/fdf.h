@@ -19,6 +19,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# ifndef  WIDTH
+#  define WIDTH 1920
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 1080
+# endif
 
 typedef struct s_fdf
 {

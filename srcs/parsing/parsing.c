@@ -12,7 +12,8 @@
 
 #include "fdf.h"
 
-static t_vec3d	*fill_map_line(t_map_info *v_map, size_t cur_line, t_list *line_list);
+static t_vec3d	*fill_map_line(t_map_info *v_map,
+					size_t cur_line, t_list *line_list);
 static t_list	*put_file_in_list(int fd);
 static void		get_vmap(t_list *list, t_map_info *v_map);
 static size_t	get_nb_word(char *vstr);
