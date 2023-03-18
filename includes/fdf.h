@@ -28,7 +28,9 @@
 
 typedef struct s_fdf
 {
+	t_mlx		mlx;
 	t_map_info	map;
+
 }				t_fdf;
 
 #endif
