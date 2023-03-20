@@ -23,6 +23,7 @@ MLX				=	lib/mlx/mlx.a
 HEADERS_LIST	=	fdf.h parsing.h
 
 SRCS_LIST		=	main.c				\
+					init.c				\
 					parsing/parsing.c	\
 					matrix/matrix_creation.c
 
