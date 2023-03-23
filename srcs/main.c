@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	fdf_data.map = parsing(argv[1]);
-	start_mlx(&fdf_data);
+	fdf_data.mlx = start_mlx();
 	mlx_loop(fdf_data.mlx.mlx_ptr);
 	(void)fdf_data;
 	return (0);

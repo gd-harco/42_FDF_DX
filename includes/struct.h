@@ -12,6 +12,7 @@
 
 #ifndef STRUCT_H
 # define STRUCT_H
+# include "fdf.h"
 
 typedef struct s_vec3d
 {
@@ -35,12 +36,7 @@ typedef struct s_map_info
 
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	int		*img_data;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	void		*mlx_ptr;
+	void		*win_ptr;
 }				t_mlx;
 #endif

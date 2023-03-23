@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   img.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 11:54:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/21 11:56:00 by gd-harco         ###   ########.fr       */
+/*   Created: 2023/03/21 14:56:54 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/03/21 15:03:53 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef IMG_H
+# define IMG_H
+# include "fdf.h"
 
-#include "fdf.h"
-
-t_mlx	start_mlx(void )
+typedef struct s_img_data
 {
-	t_mlx	mlx;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img_data;
 
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "FDF");
-	return (mlx);
-}
+#endif

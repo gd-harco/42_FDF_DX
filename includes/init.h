@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 11:54:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/21 11:56:00 by gd-harco         ###   ########.fr       */
+/*   Created: 2023/03/21 11:49:23 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/03/21 11:51:16 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef INIT_H
+# define INIT_H
+# include "fdf.h"
 
-#include "fdf.h"
+t_mlx	start_mlx(void);
 
-t_mlx	start_mlx(void )
-{
-	t_mlx	mlx;
-
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "FDF");
-	return (mlx);
-}
+#endif
