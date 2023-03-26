@@ -12,22 +12,25 @@ DIR_SRCS		=	srcs/
 
 DIR_HEADERS		=	includes/
 
+DIR_HEADERS_NLX	=	lib/new_libx/includes/
+
 # ---- Libs variables ---- #
 
 LIBFT			=	lib/libft/libft.a
 
-MLX				=	lib/mlx/mlx.a
+NLX				=	lib/new_libx/libnlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	fdf.h parsing.h
+HEADERS_LIST	=	nlx.h fdf.h parsing.h
+
 
 SRCS_LIST		=	main.c				\
 					init.c				\
 					parsing/parsing.c	\
 					matrix/matrix_creation.c
 
-HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
+HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h} \
 
 OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
@@ -52,18 +55,10 @@ all				:	${NAME}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${MLX}
+${NAME}			:	${OBJS} ${HEADERS}
+					make -C lib/libft
+					make -C lib/new_libx
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
-
-# ---- Lib rules ---- #
-
-${LIBFT}		:
-						make -C lib/libft
-
-${MLX}		:
-						make -C lib/mlx
-
-
 
 # ---- Compiled Rules ---- #
 

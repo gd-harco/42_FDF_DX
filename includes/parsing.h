@@ -12,7 +12,7 @@
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "struct.h"
+
 
 t_map_info	parsing(char *filename);
 

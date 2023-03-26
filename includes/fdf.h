@@ -1,23 +1,21 @@
-* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mintest <mintest@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:39:07 by mintest           #+#    #+#             */
-/*   Updated: 2023/03/21 14:58:49 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:21:40 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include"../lib/libft/includes/libft.h"
-# include "mlx.h"
+# include "nlx.h"
 # include "parsing.h"
-# include "struct.h"
 # include "init.h"
-# include "img.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>

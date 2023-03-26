@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
+/*   nlx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
-/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
+/*   Created: 2023/03/23 15:49:46 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/03/23 15:49:46 by gd-harco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_int.h"
+#ifndef NLX_H
+# define NLX_H
 
-int	mlx_destroy_display(t_xvar *xvar)
-{
-	XCloseDisplay(xvar->display);
-}
+# include "../lib/new_libx/include/nlx_img.h"
+
+#endif
