@@ -1,0 +1,3 @@
+[submodule "lib/new_libx"]
+	path = lib/new_libx
+	url = git@github.com:gd-harco/NewLibx.git
