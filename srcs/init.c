@@ -23,5 +23,4 @@ t_fdf	*fdf_init(char *file)
 	fdf_data->map = init_map(file);
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	return (fdf_data);
-
 }

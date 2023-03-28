@@ -39,7 +39,7 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 CC				=	cc
 
-CFLAGS			=	 -Wall -Werror -Wextra -g3
+CFLAGS			=	 -Wall -Werror -Wextra -g3 -fsanitize=address
 
 FRAMEWORKS		=	-Llib/libft -Llib/new_libx -lft -lnlx -lXext -lX11
 
@@ -81,6 +81,7 @@ clean			:
 fclean			:	clean
 					${RM} ${NAME}
 					make -C lib/libft fclean
+					make -C lib/new_libx fclean
 
 re				:	fclean all
 

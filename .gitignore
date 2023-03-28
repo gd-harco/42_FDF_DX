@@ -2,5 +2,4 @@
 /bin
 /.idea
 fdf
-.vscode/launch.json
-.vscode/settings.json
+.vscode
