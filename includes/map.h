@@ -6,14 +6,15 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:01:33 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/27 16:05:26 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 17:28:23 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
-
 # include "nlx.h"
+
+//-----------------STRUCTURES-----------------//
 
 typedef struct s_map
 {
@@ -22,5 +23,9 @@ typedef struct s_map
 	int		width;
 	int		height;
 }				t_map;
+
+//-----------------FUNCTIONS-----------------//
+
+t_map	*init_map(char *map_file);
 
 #endif

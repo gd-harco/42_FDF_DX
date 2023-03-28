@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mintest <mintest@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 15:45:26 by mintest           #+#    #+#             */
-/*   Updated: 2023/03/07 15:53:28 by mintest          ###   ########.fr       */
+/*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/03/27 17:57:08 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef INIT_H
+# define INIT_H
 
+# include "map.h"
+# include "nlx.h"
 
-t_map_info	parsing(char *filename);
+typedef struct s_fdf
+{
+	t_map		*map;
+	t_win		*mlx_win;
+	t_img		img;
+	t_matrix	*matrix;
+}				t_fdf;
+
+t_fdf	*fdf_init(char *file);
 
 #endif
