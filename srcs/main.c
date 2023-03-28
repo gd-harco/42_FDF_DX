@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:54:32 by mintest           #+#    #+#             */
-/*   Updated: 2023/03/27 14:58:59 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 17:49:40 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	t_fdf	fdf_data;
+	t_fdf	*fdf_data;
 
 	if (argc != 2)
 	{
 		ft_dprintf(STDERR_FILENO, "Usage: ./fdf <filename>.fdf");
 		exit(1);
 	}
-	fdf_data.map = parsing(argv[1]);
-	fdf_data.mlx = start_mlx();
-	mlx_loop(fdf_data.mlx.mlx_ptr);
+	fdf_data = fdf_init(argv[1]);
+	mlx_loop(fdf_data->mlx_win->mlx);
 	(void)fdf_data;
 	return (0);
 }
