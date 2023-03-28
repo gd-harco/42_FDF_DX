@@ -22,13 +22,14 @@ NLX				=	lib/new_libx/libnlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	nlx.h fdf.h parsing.h
-
+HEADERS_LIST	=	fdf.h \
+					init.h \
+					map.h \
+					nlx.h
 
 SRCS_LIST		=	main.c				\
 					init.c				\
-					parsing/parsing.c	\
-					matrix/matrix_creation.c
+					parsing/parsing.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h} \
 
@@ -40,7 +41,7 @@ CC				=	cc
 
 CFLAGS			=	 -Wall -Werror -Wextra -g3
 
-FRAMEWORKS		=	-Llib/libft -Llib/mlx -lft -lmlx -lXext -lX11
+FRAMEWORKS		=	-Llib/libft -Llib/new_libx -lft -lnlx -lXext -lX11
 
 
 # ---- Commands ---- #
@@ -58,7 +59,7 @@ all				:	${NAME}
 ${NAME}			:	${OBJS} ${HEADERS}
 					make -C lib/libft
 					make -C lib/new_libx
-					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
+					${CC} ${CFLAGS} -I ${DIR_HEADERS} -I ${DIR_HEADERS_NLX} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 
 # ---- Compiled Rules ---- #
 
