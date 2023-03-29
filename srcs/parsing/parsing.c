@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/29 11:00:29 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 20:35:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static t_list	*put_file_in_list(int fd);
 static t_map	*create_map(t_list *file_in_list);
-static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map);
-static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y);
+static t_vec3D	**create_vec3d_array(t_list *file_in_list, t_map *map);
+static t_vec3D	*create_vec3d_array_from_line(char *line, t_map *map, int y);
 
 t_map	*init_map(char *map_file)
 {
@@ -31,23 +31,16 @@ t_map	*init_map(char *map_file)
 	return (create_map(file_in_list));
 }
 
-static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
+static t_vec3D	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 {
-	t_vec3d	*vec3d_array;
-
-	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
-	if (!vec3d_array)
-		return (perror("Error when allocating memory for map\n"), NULL);
-	fill_vec3d_array(vec3d_array, line, map, y);
-	return (vec3d_array);
-}
-
-static void	fill_vec3d_array(t_vec3d *vec3d_array, char *line, t_map *map, int y)
-{
+	t_vec3D	*vec3d_array;
 	char	**split_line;
 	int		x;
 
 	split_line = ft_split(line, ' ');
+	vec3d_array = malloc(sizeof(t_vec3D) * map->width);
+	if (!vec3d_array)
+		return (perror("Error when allocating memory for map\n"), NULL);
 	x = -1;
 	while (++x < map->width)
 	{
@@ -55,14 +48,15 @@ static void	fill_vec3d_array(t_vec3d *vec3d_array, char *line, t_map *map, int y
 		vec3d_array[x].y = y;
 		vec3d_array[x].z = ft_atoi(split_line[x]);
 	}
+	return (vec3d_array);
 }
 
-static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
+static t_vec3D	**create_vec3d_array(t_list *file_in_list, t_map *map)
 {
-	t_vec3d	**vec3d_array;
+	t_vec3D	**vec3d_array;
 	int		y;
 
-	vec3d_array = malloc(sizeof(t_vec3d *) * map->height);
+	vec3d_array = malloc(sizeof(t_vec3D *) * map->height);
 	if (!vec3d_array)
 		return (perror("Error when allocating memory for map\n"), NULL);
 	y = 0;
