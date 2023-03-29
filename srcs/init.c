@@ -21,6 +21,7 @@ t_fdf	*fdf_init(char *file)
 	if (!fdf_data)
 		return (NULL);
 	fdf_data->map = init_map(file);
+	fdf_data->mlx_win = (t_win *)malloc(sizeof(t_win));
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	return (fdf_data);
 }
