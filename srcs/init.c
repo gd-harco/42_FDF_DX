@@ -11,8 +11,23 @@
                                                                       */
 /* ************************************************************************** */
 
+/**
+ * @file init.c
+ *
+ * @brief FDF initialization file
+ *
+ * @author gd-harco
+ * @date 2023-04-04
+ */
+
 #include "fdf.h"
 
+/**
+ * @brief Initialize the fdf structure.
+ * @details Initialize the fdf structure by calling the needed nlx functions
+ * @param file The file containing the map
+ * @return *fdf_data The fdf structure allocated on the heap (must be freed)
+ */
 t_fdf	*fdf_init(char *file)
 {
 	t_fdf	*fdf_data;

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:54:32 by mintest           #+#    #+#             */
-/*   Updated: 2023/03/29 15:14:19 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 17:34:22 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	fdf_data = fdf_init(argv[1]);
+	draw_image(fdf_data);
 	mlx_loop(fdf_data->mlx_win->mlx);
-	(void)fdf_data;
 	return (0);
 }

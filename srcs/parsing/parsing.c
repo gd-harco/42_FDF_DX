@@ -6,10 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/29 15:06:33 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 17:13:23 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file parsing.c
+ *
+ * @brief FDF parsing file
+ *
+ * @author gd-harco
+ * @date 2023-03-09
+ */
 #include "fdf.h"
 
 static t_list	*put_file_in_list(int fd);
@@ -17,6 +25,13 @@ static t_map	*create_map(t_list *file_in_list);
 static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map);
 static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y);
 
+
+/**
+ * @brief Initialize the map structure.
+ * @details Initialize the map structure by calling the needed functions
+ * @param map_file The file containing the map
+ * @return *map The map structure allocated on the heap (must be freed)
+ */
 t_map	*init_map(char *map_file)
 {
 	t_list	*file_in_list;
@@ -31,6 +46,14 @@ t_map	*init_map(char *map_file)
 	return (create_map(file_in_list));
 }
 
+/**
+ * @brief Create a vec3d array from line object
+ *
+ * @param line 
+ * @param map
+ * @param y
+ * @return An arry of vec3d
+ */
 static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 {
 	t_vec3d	*vec3d_array;
@@ -52,6 +75,12 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	return (vec3d_array);
 }
 
+/**
+ * @brief Create and allocate the map structure
+ *
+ * @param file_in_list The file containing the map
+ * @return vec3d_array The map structure allocated on the heap (must be freed).
+ */
 static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 {
 	t_vec3d	**vec3d_array;
@@ -71,6 +100,14 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 	return (vec3d_array);
 }
 
+/**
+ * @brief Create and allocate the map structure
+ *
+ * @param file_in_list The file containing the map
+ * @return t_map* The map structure allocated on the heap (must be freed).
+ * At this state, th map_projected is allocated but empty.
+ * The program must use the multiply_vector_matrix function to fill it.
+ */
 static t_map	*create_map(t_list *file_in_list)
 {
 	t_map	*map;
@@ -84,6 +121,12 @@ static t_map	*create_map(t_list *file_in_list)
 	return (map);
 }
 
+/**
+ * @brief Put the file in a list of strings, used in the next function
+ *
+ * @param fd The file descriptor of the file
+ * @return t_list*
+ */
 static t_list	*put_file_in_list(int fd)
 {
 	t_list	*list;
