@@ -49,7 +49,7 @@ t_map	*init_map(char *map_file)
 /**
  * @brief Create a vec3d array from line object
  *
- * @param line 
+ * @param line
  * @param map
  * @param y
  * @return An arry of vec3d
@@ -87,13 +87,16 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 	int		y;
 
 	vec3d_array = malloc(sizeof(t_vec3d *) * map->height);
-	if (!vec3d_array)
+	map->map_projected = malloc(sizeof(t_vec3d *) * map->height);
+	if (!vec3d_array || !map->map_projected)
 		return (perror("Error when allocating memory for map\n"), NULL);
 	y = 0;
 	while (y < map->height)
 	{
 		vec3d_array[y] = create_vec3d_array_from_line(file_in_list->content,
 				map, y);
+		map->map_projected[y] = malloc(sizeof(t_vec3d) * map->width);
+		ft_bzero(map->map_projected[y], sizeof(t_vec3d) * map->width);
 		file_in_list = file_in_list->next;
 		y++;
 	}
@@ -117,7 +120,6 @@ static t_map	*create_map(t_list *file_in_list)
 		return (perror("Error when allocating memory for map\n"), NULL);
 	map->height = ft_lstsize(file_in_list);
 	map->map_base = create_vec3d_array(file_in_list, map);
-	map->map_projected = create_vec3d_array(file_in_list, map);
 	return (map);
 }
 

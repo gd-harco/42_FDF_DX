@@ -22,13 +22,15 @@ NLX				=	lib/new_libx/libnlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	fdf.h \
-					init.h \
-					map.h \
-					nlx.h
+HEADERS_LIST	=	fdf.h		\
+					init.h		\
+					map.h		\
+					nlx.h		\
+					projections.h
 
 SRCS_LIST		=	main.c				\
 					init.c				\
+					projections.c		\
 					parsing/parsing.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h} \
@@ -41,7 +43,7 @@ CC				=	cc
 
 CFLAGS			=	 -Wall -Werror -Wextra -g3 -fsanitize=address
 
-FRAMEWORKS		=	-Llib/libft -Llib/new_libx -lft -lnlx -lXext -lX11
+FRAMEWORKS		=	-Llib/libft -Llib/new_libx -lft -lnlx -lXext -lX11 -lm
 
 
 # ---- Commands ---- #

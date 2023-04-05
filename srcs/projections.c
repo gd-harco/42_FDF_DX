@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   projections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 13:54:32 by mintest           #+#    #+#             */
-/*   Updated: 2023/04/05 13:58:11 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/04/04 17:46:30 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/04 18:47:23 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "init.h"
 
-int	main(int argc, char **argv)
+void	project_view(t_fdf *fdf_data)
 {
-	t_fdf	*fdf_data;
+	int	row;
+	int	col;
 
-	if (argc != 2)
+	row = 0;
+	while (row < fdf_data->map->height)
 	{
-		ft_dprintf(STDERR_FILENO, "Usage: ./fdf <filename>.fdf");
-		exit(1);
+		col = 0;
+		while (col < fdf_data->map->width)
+		{
+			multiply_vector_matrix(fdf_data->proj_info.m,
+					&fdf_data->map->map_projected[row][col],
+					&fdf_data->map->map_projected[row][col]);
+			col++;
+		}
+		row++;
 	}
-	fdf_data = fdf_init(argv[1]);
-	project_view(fdf_data);
-	mlx_loop(fdf_data->mlx_win->mlx);
-	(void)fdf_data;
-	return (0);
 }
