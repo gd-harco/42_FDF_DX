@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   projections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/06 15:14:52 by gd-harco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   projections.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:46:30 by gd-harco          #+#    #+#             */
@@ -25,7 +37,7 @@ void	project_view(t_fdf *fdf_data)
 		while (col < fdf_data->map->width)
 		{
 			multiply_vector_matrix(fdf_data->proj_info.m,
-					&fdf_data->map->map_projected[row][col],
+					&fdf_data->map->map_base[row][col],
 					&fdf_data->map->map_projected[row][col]);
 			col++;
 		}

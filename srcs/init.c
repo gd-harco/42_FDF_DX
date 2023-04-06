@@ -37,10 +37,12 @@ t_fdf	*fdf_init(char *file)
 		return (NULL);
 	fdf_data->map = init_map(file);
 	fdf_data->mlx_win = (t_win *)malloc(sizeof(t_win));
-	fdf_data->proj_info.aspect_ratio = (double)WIDTH / (double)HEIGHT;
-	fdf_data->proj_info.fov = 120;
-	fdf_data->proj_info.z_near = 1;
-	fdf_data->proj_info.z_far = 10;
+	fdf_data->proj_info.aspect_ratio = (float)WIDTH / (float)HEIGHT;
+	fdf_data->proj_info.fov = 90.0f;
+	fdf_data->proj_info.z_near = 0.1f;
+	fdf_data->proj_info.z_far = 1000.0f;
+	fdf_data->proj_info.fov_rad = 1.0f
+		/ tanf(fdf_data->proj_info.fov * 0.5f / 180.0f * (float)M_PI);
 	fdf_data->proj_info.m = get_projection_matrix(&fdf_data->proj_info);
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	return (fdf_data);
