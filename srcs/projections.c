@@ -27,6 +27,10 @@ void	project_view(t_fdf *fdf_data)
 			multiply_vector_matrix(fdf_data->proj_info.m,
 					&fdf_data->map->map_base[row][col],
 					&fdf_data->map->map_projected[row][col]);
+			fdf_data->map->map_projected[row][col].x += 1.0f;
+			fdf_data->map->map_projected[row][col].y += 1.0f;
+			fdf_data->map->map_projected[row][col].x *= 0.5f * (float)WIDTH;
+			fdf_data->map->map_projected[row][col].y *= 0.5f * (float)HEIGHT;
 			col++;
 		}
 		row++;
