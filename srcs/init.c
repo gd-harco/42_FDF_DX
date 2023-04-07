@@ -36,6 +36,11 @@ t_fdf	*fdf_init(char *file)
 	if (!fdf_data)
 		return (NULL);
 	fdf_data->map = init_map(file);
+	if (fdf_data->map == NULL)
+	{
+		free(fdf_data);
+		exit (3);
+	}
 	fdf_data->mlx_win = (t_win *)malloc(sizeof(t_win));
 	fdf_data->proj_info.aspect_ratio = (float)WIDTH / (float)HEIGHT;
 	fdf_data->proj_info.fov = 90.0f;
