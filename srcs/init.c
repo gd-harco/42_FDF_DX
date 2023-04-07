@@ -45,5 +45,6 @@ t_fdf	*fdf_init(char *file)
 		/ tanf(fdf_data->proj_info.fov * 0.5f / 180.0f * 3.14159f);
 	fdf_data->proj_info.m = get_projection_matrix(&fdf_data->proj_info);
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
+	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	return (fdf_data);
 }
