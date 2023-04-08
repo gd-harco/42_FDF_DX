@@ -13,6 +13,8 @@
 #include "fdf.h"
 #include "init.h"
 
+static void	scale_in_view(t_vec3d *to_scale);
+
 void	project_view(t_fdf *fdf_data)
 {
 	int	row;
@@ -27,12 +29,15 @@ void	project_view(t_fdf *fdf_data)
 			multiply_vector_matrix(fdf_data->proj_info.m,
 					&fdf_data->map->map_base[row][col],
 					&fdf_data->map->map_projected[row][col]);
-			fdf_data->map->map_projected[row][col].x += 1.0f;
-			fdf_data->map->map_projected[row][col].y += 1.0f;
-			fdf_data->map->map_projected[row][col].x *= 0.5f * (float)WIDTH;
-			fdf_data->map->map_projected[row][col].y *= 0.5f * (float)HEIGHT;
+			scale_in_view(&fdf_data->map->map_projected[row][col]);
 			col++;
 		}
 		row++;
 	}
+}
+
+static void	scale_in_view(t_vec3d *to_scale)
+{
+	to_scale->x = (to_scale->x + 1.0f) * 0.5f * (float)WIDTH;
+	to_scale->y = (to_scale->y + 1.0f) * 0.5f *(float)HEIGHT;
 }
