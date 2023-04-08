@@ -16,7 +16,7 @@
 # include "../lib/new_libx/includes/nlx_color.h"
 # include "../lib/new_libx/includes/nlx_img.h"
 # include "../lib/new_libx/includes/nlx_line.h"
-# include "../lib/new_libx/includes/nlx_matrix.h"
+# include "../lib/new_libx/includes/nlx_mat.h"
 # include "../lib/new_libx/includes/nlx_vec.h"
 # include "../lib/new_libx/includes/nlx_win.h"
 # include "../lib/new_libx/minilibx_linux/mlx.h"
