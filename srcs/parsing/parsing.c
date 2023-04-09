@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 17:13:23 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 16:01:12 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_list	*put_file_in_list(int fd);
 static t_map	*create_map(t_list *file_in_list);
 static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map);
 static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y);
+static void		get_highest_point(t_map *map);
 
 
 /**
@@ -120,6 +121,7 @@ static t_map	*create_map(t_list *file_in_list)
 		return (perror("Error when allocating memory for map\n"), NULL);
 	map->height = ft_lstsize(file_in_list);
 	map->map_base = create_vec3d_array(file_in_list, map);
+	get_highest_point(map);
 	return (map);
 }
 
@@ -149,4 +151,26 @@ static t_list	*put_file_in_list(int fd)
 		buff = get_next_line(fd);
 	}
 	return (list);
+}
+
+void get_highest_point(t_map *map)
+{
+	int		row;
+	int		col;
+
+	if (map->width == 0 || map->height == 0)
+		return ;
+	map->highest_point = map->map_base[0][0].z;
+	row = 0;
+	while (row < map->height)
+	{
+		col = 0;
+		while (col < map->width)
+		{
+			if (map->map_base[row][col].z > map->highest_point)
+				map->highest_point = map->map_base[row][col].z;
+			col++;
+		}
+		row++;
+	}
 }

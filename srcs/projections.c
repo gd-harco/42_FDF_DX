@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 15:43:02 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 16:00:41 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,17 @@ void	project_view(t_fdf *fdf_data)
 	int	row;
 	int	col;
 	t_matrix	world;
+	float		trans_z;
 
 	row = 0;
-	world = get_world_matrix(get_z_rotation_matrix(0.0f), get_x_rotation_matrix(-(M_PI/4.0f)), get_y_rotation_matrix(0.0f), get_translation_matrix(0.0f, 2.5f, ));
+	if (fdf_data->map->width > fdf_data->map->height && fdf_data->map->width > fdf_data->map->highest_point)
+		trans_z = fdf_data->map->width;
+	else if (fdf_data->map->height > fdf_data->map->highest_point)
+		trans_z = fdf_data->map->height;
+	else
+		trans_z = fdf_data->map->highest_point;
+
+	world = get_world_matrix(get_z_rotation_matrix(0.0f), get_x_rotation_matrix(-(M_PI/4.0f)), get_y_rotation_matrix(0.0f), get_translation_matrix(0.0f, 2.5f, trans_z));
 
 	while (row < fdf_data->map->height)
 	{
