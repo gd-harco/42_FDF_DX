@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 16:48:57 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 17:46:06 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	x = -1;
 	while (++x < map->width)
 	{
-		vec3d_array[x].x = x;
-		vec3d_array[x].y = y;	
-		vec3d_array[x].z = ft_atoi(splitted_line[x]);
+		vec3d_array[x].x = x - map->width / 2;
+		vec3d_array[x].y = y - map->height / 2;
+		vec3d_array[x].z = -ft_atoi(splitted_line[x]);
 		vec3d_array[x].w = 1.0f;
 	}
 	return (vec3d_array);
@@ -123,6 +123,7 @@ static t_map	*create_map(t_list *file_in_list)
 	map->height = ft_lstsize(file_in_list);
 	map->map_base = create_vec3d_array(file_in_list, map);
 	get_highest_point(map);
+	ft_lstclear(&file_in_list, &free);
 	return (map);
 }
 

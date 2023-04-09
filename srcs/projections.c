@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 17:06:13 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 17:39:36 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	project_view(t_fdf *fdf_data)
 	int	col;
 	t_matrix	world;
 	float		trans_z;
+	t_vec3d		tmp;
 
 	row = 0;
 	fdf_data->map->highest_point = -fdf_data->map->highest_point;
@@ -42,19 +43,9 @@ void	project_view(t_fdf *fdf_data)
 		{
 			multiply_vector_matrix(&world,
 					&fdf_data->map->map_base[row][col],
-					&fdf_data->map->map_projected[row][col]);
-			col++;
-		}
-		row++;
-	}
-	row = 0;
-	while (row < fdf_data->map->height)
-	{
-		col = 0;
-		while (col < fdf_data->map->width)
-		{
+					&tmp);
 			multiply_vector_matrix(fdf_data->proj_info.m,
-					&fdf_data->map->map_projected[row][col],
+					&tmp,
 					&fdf_data->map->map_projected[row][col]);
 			scale_in_view(&fdf_data->map->map_projected[row][col]);
 			col++;
@@ -76,6 +67,6 @@ void	vector_divide(t_vec3d *a, float k)
 static void	scale_in_view(t_vec3d *to_scale)
 {
 	vector_divide(to_scale, to_scale->w);
-	to_scale->x = (to_scale->x + 1.0f) * 0.5f * (float)WIDTH;
-	to_scale->y = (to_scale->y + 1.0f) * 0.5f *(float)HEIGHT;
+	to_scale->x = (to_scale->x + 1.0f) * (float)WIDTH / 2.0f + 0.5f;
+	to_scale->y = (to_scale->y + 1.0f) * (float)HEIGHT / 2.0f + 0.5f;
 }

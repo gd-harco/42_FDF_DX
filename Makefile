@@ -87,7 +87,7 @@ fclean			:	clean
 					make -C lib/libft fclean
 					make -C lib/new_libx fclean
 
-re				:	fclean all
-
+re				:	fclean
+					make all
 
 .PHONY:	all clean fclean re
