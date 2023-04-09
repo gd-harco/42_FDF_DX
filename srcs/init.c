@@ -47,7 +47,7 @@ t_fdf	*fdf_init(char *file)
 	fdf_data->proj_info.z_near = 0.1f;
 	fdf_data->proj_info.z_far = 1000.0f;
 	fdf_data->proj_info.fov_rad = 1.0f
-		/ tanf(fdf_data->proj_info.fov * 0.5f / 180.0f * 3.14159f);
+		/ tanf(fdf_data->proj_info.fov * 0.5f / 180.0f * (float)M_PI);
 	fdf_data->proj_info.m = get_projection_matrix(&fdf_data->proj_info);
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);

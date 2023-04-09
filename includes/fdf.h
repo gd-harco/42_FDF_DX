@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:39:07 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 17:46:21 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 16:21:38 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 # ifndef  WIDTH
 #  define WIDTH 1280
 # endif

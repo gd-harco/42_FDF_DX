@@ -43,7 +43,7 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 CC				=	cc
 
-CFLAGS			=	 -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS			=	 -Wall -Werror -Wextra -g3
 
 FRAMEWORKS		=	-Llib/libft -Llib/new_libx -lft -lnlx -lXext -lX11 -lm
 
