@@ -37,7 +37,7 @@ typedef struct s_fdf
 	t_map		*map;
 	t_win		*mlx_win;
 	t_img		img;
-	t_proj_info	proj_info;
+	t_world_i	*world;
 }				t_fdf;
 
 t_fdf	*fdf_init(char *file);

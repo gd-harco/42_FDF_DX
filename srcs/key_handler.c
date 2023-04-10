@@ -19,6 +19,5 @@ int	key_handler(int key, t_fdf *fdf_data)
 int	exit_program(t_fdf *fdf_data)
 {
 	mlx_destroy_window(fdf_data->mlx_win->mlx, fdf_data->mlx_win->win_ptr);
-	free(fdf_data->proj_info.m);
 	exit(0);
 }
