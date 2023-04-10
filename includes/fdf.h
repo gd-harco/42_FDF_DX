@@ -17,6 +17,7 @@
 # include "init.h"
 # include "map.h"
 # include "nlx.h"
+# include "key_handler.h"
 # include "projections.h"
 # include <unistd.h>
 # include <stdio.h>
