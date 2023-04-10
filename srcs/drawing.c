@@ -1,3 +1,4 @@
+
 #include "fdf.h"
 
 static t_nlx_line	**get_all_line(t_map *map, t_vec3d **dmap, int *nb_line);
@@ -15,7 +16,8 @@ void	draw_all(t_fdf *fdf_data)
 		all_line++;
 		nb_line--;
 	}
-	mlx_put_image_to_window(fdf_data->mlx_win->mlx, fdf_data->mlx_win->win_ptr, fdf_data->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fdf_data->mlx_win->mlx,
+		fdf_data->mlx_win->win_ptr, fdf_data->img.img_ptr, 0, 0);
 }
 
 t_nlx_line	**get_all_line(t_map *map, t_vec3d **dmap, int *nb_line)
