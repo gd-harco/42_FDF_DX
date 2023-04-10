@@ -62,7 +62,7 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	int		x;
 
 	splitted_line = ft_split(line, ' ');
-	map->width = ft_array_length((void **)splitted_line);
+	map->width = (int)ft_array_length((void **)splitted_line);
 	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
 	if (!vec3d_array)
 		return (perror("Error when allocating memory for map\n"), NULL);
@@ -74,6 +74,7 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 		vec3d_array[x].z = -ft_atoi(splitted_line[x]);
 		vec3d_array[x].w = 1.0f;
 	}
+	ft_free_split(splitted_line);
 	return (vec3d_array);
 }
 
