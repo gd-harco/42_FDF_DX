@@ -35,7 +35,7 @@ SRCS_LIST		=	main.c				\
 					init.c				\
 					projections.c		\
 					key_handler.c		\
-					parsing/parsing.c
+					parsing.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h} \
 
@@ -76,8 +76,6 @@ ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
 
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
-					${MKDIR} ${DIR_OBJS}/parsing
-					${MKDIR} ${DIR_OBJS}/matrix
 
 # ---- Usual Rules ---- #
 
