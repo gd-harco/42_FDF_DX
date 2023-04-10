@@ -18,15 +18,16 @@ static void	scale_in_view(t_vec3d *to_scale);
 
 void	project_view(t_fdf *fdf_data)
 {
-	int	row;
-	int	col;
+	int			row;
+	int			col;
 	t_matrix	world;
 	float		trans_z;
 	t_vec3d		tmp;
 
 	row = 0;
 	fdf_data->map->highest_point = -fdf_data->map->highest_point;
-	if (fdf_data->map->width > fdf_data->map->height && fdf_data->map->width > fdf_data->map->highest_point)
+	if (fdf_data->map->width > fdf_data->map->height
+		&& fdf_data->map->width > fdf_data->map->highest_point)
 		trans_z = fdf_data->map->width;
 	else if (fdf_data->map->height > fdf_data->map->highest_point)
 		trans_z = fdf_data->map->height;
@@ -42,11 +43,11 @@ void	project_view(t_fdf *fdf_data)
 		while (col < fdf_data->map->width)
 		{
 			multiply_vector_matrix(&world,
-					&fdf_data->map->map_base[row][col],
-					&tmp);
+				&fdf_data->map->map_base[row][col],
+				&tmp);
 			multiply_vector_matrix(fdf_data->proj_info.m,
-					&tmp,
-					&fdf_data->map->map_projected[row][col]);
+				&tmp,
+				&fdf_data->map->map_projected[row][col]);
 			scale_in_view(&fdf_data->map->map_projected[row][col]);
 			col++;
 		}
@@ -57,7 +58,7 @@ void	project_view(t_fdf *fdf_data)
 void	vector_divide(t_vec3d *a, float k)
 {
 	if (k == 0)
-		return;
+		return ;
 	a->x /= k;
 	a->y /= k;
 	a->z /= k;
