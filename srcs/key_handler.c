@@ -34,6 +34,9 @@ int	exit_program(t_fdf *fdf_data)
 	free(fdf_data->world->rot);
 	free(fdf_data->world->world_m);
 	free(fdf_data->world);
+	close(0);
+	close(1);
+	close(2);
 	exit(0);
 }
 

@@ -42,6 +42,7 @@ t_map	*init_map(char *map_file)
 	if (map_fd == -1)
 		return (perror("Error when opening map file\n"), NULL);
 	file_in_list = put_file_in_list(map_fd);
+	close(map_fd);
 	if (!file_in_list)
 		return (NULL);
 	return (create_map(file_in_list));
