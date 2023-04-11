@@ -22,19 +22,21 @@ NLX				=	lib/new_libx/libnlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	fdf.h			\
-					drawing.h		\
+HEADERS_LIST	=	drawing.h		\
+					fdf.h			\
 					init.h			\
 					key_handler.h	\
 					map.h			\
 					nlx.h			\
-					projections.h
+					projections.h	\
+					update.h
 
 SRCS_LIST		=	main.c				\
 					drawing.c			\
 					init.c				\
-					projections.c		\
 					key_handler.c		\
+					projections.c		\
+					update.c			\
 					parsing.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h} \

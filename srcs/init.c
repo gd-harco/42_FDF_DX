@@ -95,7 +95,7 @@ static void	init_translate(t_fdf *fdf_data)
 		fdf_data->world->trans->translate_z = fdf_data->map->highest_point;
 	fdf_data->world->trans->translate_x = 0.0f;
 	fdf_data->world->trans->translate_y = 2.5f;
-	fdf_data->world->trans->m = get_translation_matrix(fdf_data->world);
+	fdf_data->world->trans->m = get_translation_matrix(fdf_data->world->trans);
 }
 
 static void	init_rotate(t_fdf *fdf_data)

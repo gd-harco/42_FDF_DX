@@ -19,6 +19,7 @@
 # include "nlx.h"
 # include "key_handler.h"
 # include "projections.h"
+# include "update.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
