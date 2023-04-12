@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 11:48:07 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/12 12:00:26 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	exit_program(t_fdf *fdf_data)
 	mlx_destroy_display(fdf_data->mlx_win->mlx);
 	free_world(fdf_data->world);
 	free_map(fdf_data->map);
+	free(fdf_data->mlx_win->mlx);
+	free(fdf_data->mlx_win);
+	free(fdf_data);
 	close(0);
 	close(1);
 	close(2);
@@ -30,15 +33,15 @@ int	exit_program(t_fdf *fdf_data)
 
 static void	free_world(t_world_i *world)
 {
-	free(world->proj->m);
-	free(world->proj);
-	free(world->trans->m);
-	free(world->trans);
+	free(world->world_m);
 	free(world->rot->x_rot_m);
 	free(world->rot->y_rot_m);
 	free(world->rot->z_rot_m);
 	free(world->rot);
-	free(world->world_m);
+	free(world->trans->m);
+	free(world->trans);
+	free(world->proj->m);
+	free(world->proj);
 	free(world);
 }
 
