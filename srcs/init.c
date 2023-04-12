@@ -73,11 +73,9 @@ static void	get_world(t_fdf *fdf_data)
 	fdf_data->world->trans = malloc(sizeof (t_trans_info));
 	fdf_data->world->rot = malloc(sizeof (t_rot_info));
 	fdf_data->world->proj = malloc(sizeof (t_proj_info));
-	fdf_data->world->world_m = malloc(sizeof (t_matrix));
 	if (fdf_data->world->trans == NULL
 		|| fdf_data->world->rot == NULL
-		|| fdf_data->world->proj == NULL
-		|| fdf_data->world->world_m == NULL)
+		|| fdf_data->world->proj == NULL)
 		exit(0);
 	init_translate(fdf_data);
 	init_rotate(fdf_data);
