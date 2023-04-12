@@ -6,12 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:19:02 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 11:29:17 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/12 16:04:03 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fdf.h"
+
+int	loop_hook(t_fdf *fdf_data)
+{
+	mlx_key_hook(fdf_data->mlx_win->win_ptr, key_handler, fdf_data);
+	return (0);
+}
 
 int	key_handler(int key, t_fdf *fdf_data)
 {
@@ -49,8 +55,10 @@ void	rotation(int key, t_fdf *fdf_data)
 	draw_all(fdf_data);
 }
 
+#include <stdio.h>
 void	translation(int key, t_fdf *fdf_data)
 {
+	printf("initial translate :\n x = %2.6f\n y =  %2.6f\n", fdf_data->world->trans->translate_x, fdf_data->world->trans->translate_y);
 	if (key == XK_Up)
 		fdf_data->world->trans->translate_y -= 0.10f;
 	else if (key == XK_Down)
@@ -59,6 +67,7 @@ void	translation(int key, t_fdf *fdf_data)
 		fdf_data->world->trans->translate_x -= 0.10f;
 	else if (key == XK_Right)
 		fdf_data->world->trans->translate_x += 0.10f;
+	printf("new translate :\n x = %2.6f\n y =  %2.6f\n", fdf_data->world->trans->translate_x, fdf_data->world->trans->translate_y);
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	update_translation(fdf_data->world->trans);

@@ -13,7 +13,7 @@ void	update_rotation(t_rot_info *rot)
 void	update_translation(t_trans_info *trans)
 {
 	free(trans->m);
-	get_translation_matrix(trans);
+	trans->m = get_translation_matrix(trans);
 }
 
 void	update_projection(t_proj_info *proj)
