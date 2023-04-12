@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:19:02 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 16:04:03 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/12 19:33:17 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int	key_handler(int key, t_fdf *fdf_data)
 	else if (key == XK_1 || key == XK_2
 		|| key == XK_3 || key == XK_4)
 		change_fov(key, fdf_data);
-//	else if (key == XK_plus || key == XK_minus)
-//		zoom(key, fdf_data);
+	else if (key == XK_KP_Add || key == XK_KP_Subtract
+		|| key == XK_equal || key == XK_minus)
+		zoom(key, fdf_data);
 	return (0);
 }
 
@@ -55,10 +56,22 @@ void	rotation(int key, t_fdf *fdf_data)
 	draw_all(fdf_data);
 }
 
-#include <stdio.h>
+void	zoom(int key, t_fdf *fdf_data)
+{
+	if (key == XK_KP_Add || key == XK_equal)
+		fdf_data->world->trans->translate_z -= 2.0f;
+	else if (key == XK_minus || key == XK_KP_Subtract)
+		fdf_data->world->trans->translate_z += 2.0f;
+	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
+	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
+	update_translation(fdf_data->world->trans);
+	update_world(fdf_data->world);
+	project_view(fdf_data);
+	draw_all(fdf_data);
+}
+
 void	translation(int key, t_fdf *fdf_data)
 {
-	printf("initial translate :\n x = %2.6f\n y =  %2.6f\n", fdf_data->world->trans->translate_x, fdf_data->world->trans->translate_y);
 	if (key == XK_Up)
 		fdf_data->world->trans->translate_y -= 0.10f;
 	else if (key == XK_Down)
@@ -67,7 +80,6 @@ void	translation(int key, t_fdf *fdf_data)
 		fdf_data->world->trans->translate_x -= 0.10f;
 	else if (key == XK_Right)
 		fdf_data->world->trans->translate_x += 0.10f;
-	printf("new translate :\n x = %2.6f\n y =  %2.6f\n", fdf_data->world->trans->translate_x, fdf_data->world->trans->translate_y);
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	update_translation(fdf_data->world->trans);
