@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_handler.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/12 11:19:02 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/12 11:22:20 by gd-harco         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "fdf.h"
 
@@ -43,13 +55,13 @@ int	exit_program(t_fdf *fdf_data)
 void	rotation(int key, t_fdf *fdf_data)
 {
 	if (key == XK_w)
-		fdf_data->world->rot->rot_x -= 0.25f;
+		fdf_data->world->rot->rot_x -= 0.10f;
 	else if (key == XK_s)
-		fdf_data->world->rot->rot_x += 0.25f;
+		fdf_data->world->rot->rot_x += 0.10f;
 	else if (key == XK_a)
-		fdf_data->world->rot->rot_y -= 0.25f;
+		fdf_data->world->rot->rot_y -= 0.10f;
 	else if (key == XK_d)
-		fdf_data->world->rot->rot_y += 0.25f;
+		fdf_data->world->rot->rot_y += 0.10f;
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	update_rotation(fdf_data->world->rot);
@@ -61,13 +73,13 @@ void	rotation(int key, t_fdf *fdf_data)
 void	translation(int key, t_fdf *fdf_data)
 {
 	if (key == XK_Up)
-		fdf_data->world->trans->translate_x -= 0.25f;
+		fdf_data->world->trans->translate_y -= 0.10f;
 	else if (key == XK_Down)
-		fdf_data->world->trans->translate_x += 0.25f;
+		fdf_data->world->trans->translate_y += 0.10f;
 	else if (key == XK_Left)
-		fdf_data->world->trans->translate_y -= 0.25f;
+		fdf_data->world->trans->translate_x -= 0.10f;
 	else if (key == XK_Right)
-		fdf_data->world->trans->translate_y += 0.25f;
+		fdf_data->world->trans->translate_x += 0.10f;
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	update_translation(fdf_data->world->trans);
