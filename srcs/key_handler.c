@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:19:02 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 11:22:20 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/12 11:29:17 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,6 @@ int	key_handler(int key, t_fdf *fdf_data)
 //	else if (key == XK_plus || key == XK_minus)
 //		zoom(key, fdf_data);
 	return (0);
-}
-
-int	exit_program(t_fdf *fdf_data)
-{
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
-	mlx_destroy_window(fdf_data->mlx_win->mlx, fdf_data->mlx_win->win_ptr);
-	mlx_destroy_display(fdf_data->mlx_win->mlx);
-	free(fdf_data->world->proj->m);
-	free(fdf_data->world->proj);
-	free(fdf_data->world->trans->m);
-	free(fdf_data->world->trans);
-	free(fdf_data->world->rot->x_rot_m);
-	free(fdf_data->world->rot->y_rot_m);
-	free(fdf_data->world->rot->z_rot_m);
-	free(fdf_data->world->rot);
-	free(fdf_data->world->world_m);
-	free(fdf_data->world);
-	close(0);
-	close(1);
-	close(2);
-	exit(0);
 }
 
 void	rotation(int key, t_fdf *fdf_data)

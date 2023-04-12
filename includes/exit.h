@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   exit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 15:39:07 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 11:29:49 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/04/12 11:29:52 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/12 11:30:28 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include"../lib/libft/includes/libft.h"
-# include "drawing.h"
-# include "exit.h"
+#ifndef EXIT_H
+# define EXIT_H
+
 # include "init.h"
-# include "map.h"
-# include "nlx.h"
-# include "key_handler.h"
-# include "projections.h"
-# include "update.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <math.h>
-# ifndef  WIDTH
-#  define WIDTH 1280
-# endif
-# ifndef HEIGHT
-#  define HEIGHT 720
-# endif
+
+int	exit_program(t_fdf *fdf_data);
+
 #endif

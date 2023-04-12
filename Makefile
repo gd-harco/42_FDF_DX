@@ -23,6 +23,7 @@ NLX				=	lib/new_libx/libnlx.a
 # ---- Files ---- #
 
 HEADERS_LIST	=	drawing.h		\
+					exit.h			\
 					fdf.h			\
 					init.h			\
 					key_handler.h	\
@@ -33,6 +34,7 @@ HEADERS_LIST	=	drawing.h		\
 
 SRCS_LIST		=	main.c				\
 					drawing.c			\
+					exit.c				\
 					init.c				\
 					key_handler.c		\
 					projections.c		\
