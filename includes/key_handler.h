@@ -6,8 +6,8 @@
 
 //-----------------FUNCTIONS-----------------//
 int		loop_hook(t_fdf *fdf_data);
-int		key_handler(int key, t_fdf *fdf_data);
-int		exit_program(t_fdf *fdf_data);
+int		key_handler_in(int key, t_fdf *fdf_data);
+int		key_handler_out(int key, t_fdf *fdf_data);
 void	translation(int key, t_fdf *fdf_data);
 void	rotation(int key, t_fdf *fdf_data);
 void	zoom(int key, t_fdf *fdf_data);

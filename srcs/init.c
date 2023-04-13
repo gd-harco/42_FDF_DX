@@ -70,6 +70,8 @@ static void	get_proj(t_fdf *fdf_data)
 
 static void	get_world(t_fdf *fdf_data)
 {
+	fdf_data->world->key_is_pressed = false;
+	fdf_data->world->key_pressed = 0;
 	fdf_data->world->trans = malloc(sizeof (t_trans_info));
 	fdf_data->world->rot = malloc(sizeof (t_rot_info));
 	fdf_data->world->proj = malloc(sizeof (t_proj_info));

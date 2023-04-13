@@ -24,10 +24,12 @@ int	main(int argc, char **argv)
 	fdf_data = fdf_init(argv[1]);
 	project_view(fdf_data);
 	draw_all(fdf_data);
-	mlx_key_hook(fdf_data->mlx_win->win_ptr, key_handler, fdf_data);
+	mlx_hook(fdf_data->mlx_win->win_ptr, KeyPress,
+		KeyPressMask, key_handler_in, fdf_data);
+	mlx_hook(fdf_data->mlx_win->win_ptr, KeyRelease,
+		KeyReleaseMask, key_handler_out, fdf_data);
 	mlx_loop_hook(fdf_data->mlx_win->mlx, loop_hook, fdf_data);
 	mlx_hook(fdf_data->mlx_win->win_ptr, 17, 0, exit_program, fdf_data);
 	mlx_loop(fdf_data->mlx_win->mlx);
-	(void)fdf_data;
 	return (0);
 }
