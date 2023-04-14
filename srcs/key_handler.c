@@ -29,9 +29,10 @@ int	loop_hook(t_fdf *fdf_data)
 			rotation(key, fdf_data);
 		else if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
 			change_fov(key, fdf_data);
-		else if (key == XK_KP_Add || key == XK_KP_Subtract
-			|| key == XK_equal || key == XK_minus)
+		else if (key == XK_KP_Add || key == XK_KP_Subtract)
 			zoom(key, fdf_data);
+		else if (key == XK_equal || key == XK_minus)
+			change_altitude(key, fdf_data);
 	}
 	return (0);
 }
@@ -70,9 +71,9 @@ void	rotation(int key, t_fdf *fdf_data)
 
 void	zoom(int key, t_fdf *fdf_data)
 {
-	if (key == XK_KP_Add || key == XK_equal)
+	if (key == XK_KP_Add)
 		fdf_data->world->trans->translate_z -= 0.05f;
-	else if (key == XK_minus || key == XK_KP_Subtract)
+	else if (key == XK_KP_Subtract)
 		fdf_data->world->trans->translate_z += 0.05f;
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
@@ -112,6 +113,42 @@ void	change_fov(int key, t_fdf *fdf_data)
 		fdf_data->world->proj->fov = 150.0f;
 	fdf_data->world->proj->fov_rad = 1.0f
 		/ tanf(fdf_data->world->proj->fov * 0.5f / 180.0f * (float) M_PI);
+	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
+	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
+	update_projection(fdf_data->world->proj);
+	project_view(fdf_data);
+	draw_all(fdf_data);
+}
+
+void	change_altitude(int key, t_fdf *fdf_data)
+{
+	int row;
+	int col;
+
+	row = 0;
+	while (row < fdf_data->map->height)
+	{
+		col = 0;
+		while (col < fdf_data->map->width)
+		{
+			if (key == XK_equal)
+			{
+				if (fdf_data->map->map_base[row][col].z < 0.0f)
+					fdf_data->map->map_base[row][col].z -= 0.01f;
+				else if (fdf_data->map->map_base[row][col].z > 0.0f)
+					fdf_data->map->map_base[row][col].z += 0.01f;
+			}
+			else if (key == XK_minus)
+			{
+				if (fdf_data->map->map_base[row][col].z < 0.0f)
+					fdf_data->map->map_base[row][col].z += 0.01f;
+				else if (fdf_data->map->map_base[row][col].z > 0.0f)
+					fdf_data->map->map_base[row][col].z -= 0.01f;
+			}
+			col++;
+		}
+		row++;
+	}
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	update_projection(fdf_data->world->proj);

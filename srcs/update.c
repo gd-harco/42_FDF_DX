@@ -39,3 +39,12 @@ void	update_world(t_world_i *world)
 	free(world->world_m);
 	world->world_m = get_world_matrix(world);
 }
+
+void	update_image(t_fdf *fdf_data)
+{
+	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
+	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
+	update_projection(fdf_data->world->proj);
+	project_view(fdf_data);
+	draw_all(fdf_data);
+}
