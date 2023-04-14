@@ -38,19 +38,15 @@ int	loop_hook(t_fdf *fdf_data)
 
 int	key_handler_in(int key, t_fdf *fdf_data)
 {
-	ft_printf("key_pressed\n");
 	fdf_data->world->key_is_pressed = true;
 	fdf_data->world->key_pressed = key;
-	ft_printf("key_pressed = %d\n", fdf_data->world->key_pressed);
 	return (0);
 }
 
 int	key_handler_out(int key, t_fdf *fdf_data)
 {
-	ft_printf("key_released\n");
 	fdf_data->world->key_is_pressed = false;
 	fdf_data->world->key_pressed -= key;
-	ft_printf("key_pressed = %d\n", fdf_data->world->key_pressed);
 	return (0);
 }
 
