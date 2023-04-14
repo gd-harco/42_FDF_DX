@@ -16,6 +16,14 @@
 
 //-----------------STRUCTURES-----------------//
 
+/**
+ * @brief Structure containing the map information
+ * @param map_base 2D array of t_vec3d containing the map information
+ * @param map_projected 2D array of t_vec3d containing the projected map
+ * @param width width of the map
+ * @param height height of the map
+ * @param highest_point highest point of the map
+ */
 typedef struct s_map
 {
 	t_vec3d	**map_base;

@@ -1,7 +1,7 @@
 
 #include "fdf.h"
 
-static t_nlx_line	**get_all_line(t_map *map, t_vec3d **dmap, int *nb_line);
+static	t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line);
 
 void	draw_all(t_fdf *fdf_data)
 {
@@ -32,7 +32,7 @@ void	draw_all(t_fdf *fdf_data)
  * @allocated_on Heap (must be freed)
  * @return t_nlx_line** the array of t_nlx_line
  */
-t_nlx_line	**get_all_line(t_map *map, t_vec3d **dmap, int *nb_line)
+t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line)
 {
 	t_nlx_line	**lines;
 	int			row;
@@ -53,7 +53,7 @@ t_nlx_line	**get_all_line(t_map *map, t_vec3d **dmap, int *nb_line)
 			if (col + 1 < map->width)
 				lines[i++] = create_line(&dmap[row][col], &dmap[row][col + 1]);
 			if (row + 1 < map->height)
-				lines[i++] = create_line(&dmap[row][col], &dmap[row +1][col]);
+				lines[i++] = create_line(&dmap[row][col], &dmap[row + 1][col]);
 			col++;
 		}
 		row++;

@@ -62,7 +62,10 @@ MKDIR			=	mkdir -p
 
 # ********* RULES ******** #
 
-all				:	${NAME}
+all				:
+					make -C lib/libft
+					make -C lib/new_libx
+					make ${NAME}
 
 # ---- Variables Rules ---- #
 
