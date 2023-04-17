@@ -25,6 +25,11 @@
 # include "map.h"
 # include "nlx.h"
 
+enum e_projection
+{
+	ISO,
+	PERSPECTIVE,
+}	e_projection;
 /**
  * @brief Structure containing all of the information needed in the program
  * @param map Map structure containing the map information
@@ -34,10 +39,11 @@
  */
 typedef struct s_fdf
 {
-	t_map		*map;
-	t_win		*mlx_win;
-	t_img		img;
-	t_world_i	*world;
+	t_map				*map;
+	t_win				*mlx_win;
+	t_img				img;
+	t_world_i			*world;
+	enum e_projection	proj_type;
 }				t_fdf;
 
 t_fdf	*fdf_init(char *file);

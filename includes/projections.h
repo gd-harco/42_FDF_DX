@@ -14,6 +14,7 @@
 # define PROJECTIONS_H
 # include "init.h"
 
+
 void	project_view(t_fdf *fdf);
 
 #endif

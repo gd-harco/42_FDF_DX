@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 17:46:06 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/15 13:41:39 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void get_highest_point(t_map *map)
 
 	if (map->width == 0 || map->height == 0)
 		return ;
-	map->highest_point = map->map_base[0][0].z;
+	map->highest_point = INT_MIN;
 	row = 0;
 	while (row < map->height)
 	{
