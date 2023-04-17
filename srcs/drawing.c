@@ -1,7 +1,7 @@
 
 #include "fdf.h"
 
-static	t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line);
+static t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line, t_img *img);
 
 void	draw_all(t_fdf *fdf_data)
 {
@@ -11,10 +11,12 @@ void	draw_all(t_fdf *fdf_data)
 
 	i = 0;
 	all_line = get_all_line(fdf_data->map,
-			fdf_data->map->map_projected, &nb_line);
+							fdf_data->map->map_projected, &nb_line, &fdf_data->img);
 	while (nb_line)
 	{
-		nlx_draw_line(&fdf_data->img, all_line[i++], COLOR_BLUE);
+		if (all_line [i]->is_visible)
+			nlx_draw_line(&fdf_data->img, all_line[i], COLOR_BLUE);
+		i++;
 		free(all_line[i - 1]);
 		nb_line--;
 	}
@@ -32,7 +34,7 @@ void	draw_all(t_fdf *fdf_data)
  * @allocated_on Heap (must be freed)
  * @return t_nlx_line** the array of t_nlx_line
  */
-t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line)
+t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line, t_img *img)
 {
 	t_nlx_line	**lines;
 	int			row;
@@ -51,9 +53,9 @@ t_nlx_line **get_all_line(t_map *map, t_vec3d **dmap, int *nb_line)
 		while (col < map->width)
 		{
 			if (col + 1 < map->width)
-				lines[i++] = create_line(&dmap[row][col], &dmap[row][col + 1]);
+				lines[i++] = create_line(&dmap[row][col], &dmap[row][col + 1], img);
 			if (row + 1 < map->height)
-				lines[i++] = create_line(&dmap[row][col], &dmap[row + 1][col]);
+				lines[i++] = create_line(&dmap[row][col], &dmap[row + 1][col], img);
 			col++;
 		}
 		row++;
