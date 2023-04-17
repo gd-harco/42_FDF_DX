@@ -70,8 +70,6 @@ all				:
 # ---- Variables Rules ---- #
 
 ${NAME}			:	${OBJS} ${HEADERS}
-					make -C lib/libft
-					make -C lib/new_libx
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -I ${DIR_HEADERS_NLX} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 
 # ---- Compiled Rules ---- #
