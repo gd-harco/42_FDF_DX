@@ -49,7 +49,7 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 CC				=	cc
 
-CFLAGS			=	 -Wall -Werror -Wextra -g3
+CFLAGS			=	 -Wall -Werror -Wextra -g3 -fsanitize=address
 
 FRAMEWORKS		=	-Llib/libft -Llib/new_libx -lft -lnlx -lXext -lX11 -lm
 
@@ -85,14 +85,18 @@ ${DIR_OBJS}		:
 # ---- Usual Rules ---- #
 
 clean			:
+					make -C lib/libft clean
+					make -C lib/new_libx clean
 					${RM} ${OBJS}
 
-fclean			:	clean
+fclean			:
+					make clean
 					${RM} ${NAME}
 					make -C lib/libft fclean
 					make -C lib/new_libx fclean
 
-re				:	fclean
+re				:
+					make fclean
 					make all
 
 .PHONY:	all clean fclean re

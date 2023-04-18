@@ -6,14 +6,14 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 17:39:36 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 17:07:24 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "init.h"
-#include <math.h>
 
+static void	set_visibility(t_vec3d *vec, float z_near);
 static void	scale_in_view(t_vec3d *to_scale);
 
 void	project_view(t_fdf *fdf_data)
@@ -26,7 +26,6 @@ void	project_view(t_fdf *fdf_data)
 	fdf_data->map->highest_point = -fdf_data->map->highest_point;
 	while (row < fdf_data->map->height)
 	{
-
 		col = 0;
 		while (col < fdf_data->map->width)
 		{
@@ -37,10 +36,20 @@ void	project_view(t_fdf *fdf_data)
 				&tmp,
 				&fdf_data->map->map_projected[row][col]);
 			scale_in_view(&fdf_data->map->map_projected[row][col]);
+			set_visibility(&fdf_data->map->map_projected[row][col],
+				fdf_data->world->proj->z_near);
 			col++;
 		}
 		row++;
 	}
+}
+
+void	set_visibility(t_vec3d *vec, float z_near)
+{
+	if (vec->w < z_near)
+		vec->is_behind_camera = true;
+	else
+		vec->is_behind_camera = false;
 }
 
 void	vector_divide(t_vec3d *a, float k)
@@ -50,7 +59,6 @@ void	vector_divide(t_vec3d *a, float k)
 	a->x /= k;
 	a->y /= k;
 	a->z /= k;
-	a->w = 1.0f;
 }
 
 static void	scale_in_view(t_vec3d *to_scale)

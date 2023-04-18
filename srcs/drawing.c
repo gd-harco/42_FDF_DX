@@ -14,7 +14,7 @@ void	draw_all(t_fdf *fdf_data)
 			fdf_data->map->map_projected, &nb_line, &fdf_data->img);
 	while (nb_line)
 	{
-		if (all_line [i]->is_visible)
+		if (all_line[i]->is_visible)
 			nlx_draw_line(&fdf_data->img, all_line[i], COLOR_BLUE);
 		i++;
 		free(all_line[i - 1]);
@@ -52,13 +52,9 @@ t_nlx_line **get_all_line(t_fdf *fdf, t_vec3d **dmap, int *nb_line, t_img *img)
 		col = 0;
 		while (col < fdf->map->width)
 		{
-			if (dmap[row][col].w < fdf->world->proj->z_near && dmap[row][col + 1].w < fdf->world->proj->z_near)
-				nb_line--;
-			if (dmap[row][col].w < fdf->world->proj->z_near && dmap[row + 1][col].w < fdf->world->proj->z_near)
-				nb_line--;
-			else if (col + 1 < fdf->map->width)
-				lines[i++] = create_line(&dmap[row][col],&dmap[row][col + 1], img);
-			else if (row + 1 < fdf->map->height)
+			if (col + 1 < fdf->map->width)
+				lines[i++] = create_line(&dmap[row][col], &dmap[row][col + 1], img);
+			if (row + 1 < fdf->map->height)
 				lines[i++] = create_line(&dmap[row][col], &dmap[row + 1][col], img);
 			col++;
 		}

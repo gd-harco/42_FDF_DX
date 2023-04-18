@@ -40,7 +40,6 @@ t_fdf	*fdf_init(char *file)
 	fdf_data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf_data)
 		return (NULL);
-	fdf_data->proj_type = ISO;
 	fdf_data->map = init_map(file);
 	if (fdf_data->map == NULL)
 	{

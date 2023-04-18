@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 15:49:12 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/17 21:40:27 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@
 # include "map.h"
 # include "nlx.h"
 
-enum e_projection
-{
-	ISO,
-	PERSPECTIVE,
-}	e_projection;
 /**
  * @brief Structure containing all of the information needed in the program
  * @param map Map structure containing the map information
@@ -43,7 +38,6 @@ typedef struct s_fdf
 	t_win				*mlx_win;
 	t_img				img;
 	t_world_i			*world;
-	enum e_projection	proj_type;
 }				t_fdf;
 
 t_fdf	*fdf_init(char *file);
