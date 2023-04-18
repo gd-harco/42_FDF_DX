@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 12:00:26 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 18:04:27 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	free_world(t_world_i *world)
 	free(world->rot);
 	free(world->trans->m);
 	free(world->trans);
-	free(world->proj->m);
+	free(world->proj->persp_m);
+	free(world->proj->iso_m);
 	free(world->proj);
 	free(world);
 }

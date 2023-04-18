@@ -65,13 +65,20 @@ static void	get_proj(t_fdf *fdf_data)
 	fdf_data->world->proj->z_far = 1000.0f;
 	fdf_data->world->proj->fov_rad = 1.0f
 		/ tanf(fdf_data->world->proj->fov * 0.5f / 180.0f * (float)M_PI);
-	fdf_data->world->proj->m = get_projection_matrix(fdf_data->world->proj);
+	fdf_data->world->proj->persp_m = get_persp_matrix(fdf_data->world->proj);
+	fdf_data->world->proj->iso_m
+		= get_iso_matrix(fdf_data->world->proj, fdf_data->mlx_win);
+	if (fdf_data->world->proj_type == ISO)
+		fdf_data->world->proj->current_m = fdf_data->world->proj->iso_m;
+	else if (fdf_data->world->proj_type == PERSP)
+		fdf_data->world->proj->current_m = fdf_data->world->proj->persp_m;
 }
 
 static void	get_world(t_fdf *fdf_data)
 {
 	fdf_data->world->key_is_pressed = false;
 	fdf_data->world->key_pressed = 0;
+	fdf_data->world->proj_type = PERSP;
 	fdf_data->world->trans = malloc(sizeof (t_trans_info));
 	fdf_data->world->rot = malloc(sizeof (t_rot_info));
 	fdf_data->world->proj = malloc(sizeof (t_proj_info));

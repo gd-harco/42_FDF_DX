@@ -13,4 +13,5 @@ void	rotation(int key, t_fdf *fdf_data);
 void	zoom(int key, t_fdf *fdf_data);
 void	change_fov(int key, t_fdf *fdf_data);
 void	change_altitude(int key, t_fdf *fdf_data);
+void	change_projection(int key, t_fdf *fdf_data);
 #endif

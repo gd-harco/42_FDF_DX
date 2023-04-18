@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:19:02 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 19:33:17 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 18:30:18 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	loop_hook(t_fdf *fdf_data)
 	if (fdf_data->world->key_is_pressed)
 	{
 		key = fdf_data->world->key_pressed;
+		if (key == XK_p || key == XK_i)
+			change_projection(key, fdf_data);
 		if (key == XK_Escape || key == XK_q)
 			exit_program(fdf_data);
 		else if (key == XK_Left || key == XK_Right
@@ -103,6 +105,8 @@ void	translation(int key, t_fdf *fdf_data)
 
 void	change_fov(int key, t_fdf *fdf_data)
 {
+	if (fdf_data->world->proj_type == ISO)
+		return;
 	if (key == XK_2)
 		fdf_data->world->proj->fov = 90.0f;
 	else if (key == XK_1)
@@ -115,15 +119,15 @@ void	change_fov(int key, t_fdf *fdf_data)
 		/ tanf(fdf_data->world->proj->fov * 0.5f / 180.0f * (float) M_PI);
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj);
+	update_projection(fdf_data->world->proj, fdf_data);
 	project_view(fdf_data);
 	draw_all(fdf_data);
 }
 
 void	change_altitude(int key, t_fdf *fdf_data)
 {
-	int row;
-	int col;
+	int	row;
+	int	col;
 
 	row = 0;
 	while (row < fdf_data->map->height)
@@ -151,7 +155,37 @@ void	change_altitude(int key, t_fdf *fdf_data)
 	}
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj);
+	update_projection(fdf_data->world->proj, fdf_data);
+	project_view(fdf_data);
+	draw_all(fdf_data);
+}
+
+void	change_projection(int key, t_fdf *fdf_data)
+{
+	if (key == XK_i)
+	{
+		fdf_data->world->rot->rot_x = 0.0f;
+		fdf_data->world->rot->rot_y = 0.0f;
+		fdf_data->world->rot->rot_z = 0.0f;
+		fdf_data->world->trans->translate_x = 0.0f;
+		fdf_data->world->trans->translate_z = 0.0f;
+		fdf_data->world->trans->translate_y = 0.0f;
+		fdf_data->world->proj_type = ISO;
+	}
+	else if (key == XK_p)
+	{
+		fdf_data->world->rot->rot_x = (-(M_PI/4.0f));
+		fdf_data->world->rot->rot_y = 0.0f;
+		fdf_data->world->rot->rot_z = 0.0f;
+		i
+		fdf_data->world->proj_type = PERSP;
+	}
+	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
+	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
+	update_rotation(fdf_data->world->rot);
+	update_translation(fdf_data->world->trans);
+	update_world(fdf_data->world);
+	update_projection(fdf_data->world->proj, fdf_data);
 	project_view(fdf_data);
 	draw_all(fdf_data);
 }

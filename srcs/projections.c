@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 17:07:24 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 18:02:48 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	project_view(t_fdf *fdf_data)
 			multiply_vector_matrix(fdf_data->world->world_m,
 				&fdf_data->map->map_base[row][col],
 				&tmp);
-			multiply_vector_matrix(fdf_data->world->proj->m,
+			multiply_vector_matrix(fdf_data->world->proj->current_m,
 				&tmp,
 				&fdf_data->map->map_projected[row][col]);
 			scale_in_view(&fdf_data->map->map_projected[row][col]);

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:43:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/13 13:43:11 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 18:18:35 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ void	update_translation(t_trans_info *trans)
 	trans->m = get_translation_matrix(trans);
 }
 
-void	update_projection(t_proj_info *proj)
+void	update_projection(t_proj_info *proj, t_fdf *fdf)
 {
-	free(proj->m);
-	proj->m = get_projection_matrix(proj);
+	free(proj->persp_m);
+	proj->persp_m = get_persp_matrix(proj);
+	if (fdf->world->proj_type == ISO)
+		proj->current_m = proj->iso_m;
+	else if (fdf->world->proj_type == PERSP)
+		proj->current_m = proj->persp_m;
 }
 
 void	update_world(t_world_i *world)
@@ -44,7 +48,7 @@ void	update_image(t_fdf *fdf_data)
 {
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj);
+	update_projection(fdf_data->world->proj, fdf_data);
 	project_view(fdf_data);
 	draw_all(fdf_data);
 }
