@@ -6,9 +6,11 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:14:50 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 17:26:22 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+//TODO : add error management if the file is not well formated
 
 /**
  * @file parsing.c
