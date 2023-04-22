@@ -12,8 +12,6 @@
 
 #include "fdf.h"
 
-//TODO ajouter le get _rot/zoom speed
-//TODO regler le niveau de zoom par dafaut en proj iso
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf_data;

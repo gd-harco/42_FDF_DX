@@ -158,7 +158,7 @@ static t_list	*put_file_in_list(int fd)
 	return (list);
 }
 
-void get_highest_point(t_map *map)
+void	get_highest_point(t_map *map)
 {
 	int		row;
 	int		col;
