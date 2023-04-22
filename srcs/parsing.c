@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/15 13:41:39 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/20 16:04:34 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map);
 static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y);
 static void		get_highest_point(t_map *map);
 
-
 /**
  * @brief Initialize the map structure.
  * @details Initialize the map structure by calling the needed functions
  * @param map_file The file containing the map
  * @return *map The map structure allocated on the heap (must be freed)
  */
+
 t_map	*init_map(char *map_file)
 {
 	t_list	*file_in_list;

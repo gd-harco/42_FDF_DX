@@ -40,6 +40,7 @@ t_fdf	*fdf_init(char *file)
 	fdf_data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!fdf_data)
 		return (NULL);
+	fdf_data->altitude_factor = 1.0f;
 	fdf_data->map = init_map(file);
 	if (fdf_data->map == NULL)
 	{
@@ -50,9 +51,9 @@ t_fdf	*fdf_init(char *file)
 	fdf_data->world = malloc(sizeof (t_world_i));
 	if (!fdf_data->mlx_win || !fdf_data->world)
 		return (NULL);
+	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	get_world(fdf_data);
 	get_proj(fdf_data);
-	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	return (fdf_data);
 }
@@ -66,8 +67,9 @@ static void	get_proj(t_fdf *fdf_data)
 	fdf_data->world->proj->fov_rad = 1.0f
 		/ tanf(fdf_data->world->proj->fov * 0.5f / 180.0f * (float)M_PI);
 	fdf_data->world->proj->persp_m = get_persp_matrix(fdf_data->world->proj);
-	fdf_data->world->proj->iso_m
-		= get_iso_matrix(fdf_data->world->proj, fdf_data->mlx_win);
+	fdf_data->iso_factor = abs(WIDTH * HEIGHT
+			- (fdf_data->map->width * fdf_data->map->height)) * 0.000002f;
+	fdf_data->world->proj->iso_m = get_iso_matrix(fdf_data->world->proj, fdf_data->mlx_win);
 	if (fdf_data->world->proj_type == ISO)
 		fdf_data->world->proj->current_m = fdf_data->world->proj->iso_m;
 	else if (fdf_data->world->proj_type == PERSP)
@@ -78,7 +80,7 @@ static void	get_world(t_fdf *fdf_data)
 {
 	fdf_data->world->key_is_pressed = false;
 	fdf_data->world->key_pressed = 0;
-	fdf_data->world->proj_type = PERSP;
+	fdf_data->world->proj_type = ISO;
 	fdf_data->world->trans = malloc(sizeof (t_trans_info));
 	fdf_data->world->rot = malloc(sizeof (t_rot_info));
 	fdf_data->world->proj = malloc(sizeof (t_proj_info));
@@ -107,9 +109,18 @@ static void	init_translate(t_fdf *fdf_data)
 
 static void	init_rotate(t_fdf *fdf_data)
 {
-	fdf_data->world->rot->rot_x = (-(M_PI/4.0f));
-	fdf_data->world->rot->rot_y = 0.0f;
-	fdf_data->world->rot->rot_z = 0.0f;
+	if (fdf_data->world->proj_type == PERSP)
+	{
+		fdf_data->world->rot->rot_x = - (M_PI/4.0f);
+		fdf_data->world->rot->rot_y = 0.0f;
+		fdf_data->world->rot->rot_z = 0.0f;
+	}
+	else if (fdf_data->world->proj_type == ISO)
+	{
+		fdf_data->world->rot->rot_x = - 120 * M_PI / 180.0f;
+		fdf_data->world->rot->rot_y = 0.0f;
+		fdf_data->world->rot->rot_z = 45 * M_PI / 180.0f;
+	}
 	fdf_data->world->rot->x_rot_m
 		= get_x_rotation_matrix(fdf_data->world->rot->rot_x);
 	fdf_data->world->rot->y_rot_m

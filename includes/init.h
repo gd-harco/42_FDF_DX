@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 18:28:26 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/20 15:44:45 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@
  */
 typedef struct s_fdf
 {
-	t_map				*map;
-	t_win				*mlx_win;
-	t_img				img;
-	t_world_i			*world;
+	t_map		*map;
+	t_win		*mlx_win;
+	t_img		img;
+	t_world_i	*world;
+	float		iso_factor;
+	float		altitude_factor;
 }				t_fdf;
 
 t_fdf	*fdf_init(char *file);

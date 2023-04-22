@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 18:02:48 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/20 16:02:56 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,32 @@
 
 static void	set_visibility(t_vec3d *vec, float z_near);
 static void	scale_in_view(t_vec3d *to_scale);
+static void	scale_in_view_iso(t_vec3d *to_scale);
+
+void	iso(t_fdf *fdf_data)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < fdf_data->map->height)
+	{
+		col = 0;
+		while (col < fdf_data->map->height)
+		{
+			fdf_data->map->map_projected[row][col].x
+				= (fdf_data->map->map_base[row][col].x
+					- fdf_data->map->map_base[row][col].y) * cos(0.523599);
+			fdf_data->map->map_projected[row][col].y
+				= -fdf_data->map->map_base[row][col].z
+				+ (fdf_data->map->map_base[row][col].x
+					+ fdf_data->map->map_base[row][col].y) * sin(0.523599);
+			scale_in_view_iso(&fdf_data->map->map_projected[row][col]);
+			col++;
+		}
+		row++;
+	}
+}
 
 void	project_view(t_fdf *fdf_data)
 {
@@ -59,6 +85,12 @@ void	vector_divide(t_vec3d *a, float k)
 	a->x /= k;
 	a->y /= k;
 	a->z /= k;
+}
+
+static void	scale_in_view_iso(t_vec3d *to_scale)
+{
+	to_scale->x = (to_scale->x + 1.0f) * (float)WIDTH / 2.0f + 0.5f;
+	to_scale->y = (to_scale->y + 1.0f) * (float)HEIGHT / 2.0f + 0.5f;
 }
 
 static void	scale_in_view(t_vec3d *to_scale)

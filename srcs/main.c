@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:09:47 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 12:26:27 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/20 14:42:22 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	fdf_data = fdf_init(argv[1]);
-	project_view(fdf_data);
+	if (fdf_data->world->proj_type == PERSP)
+		project_view(fdf_data);
+	else if (fdf_data->world->proj_type == ISO)
+		iso(fdf_data);
 	draw_all(fdf_data);
 	mlx_hook(fdf_data->mlx_win->win_ptr, KeyPress,
 		KeyPressMask, key_handler_in, fdf_data);
