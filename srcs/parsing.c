@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/20 16:04:34 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:14:50 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static t_list	*put_file_in_list(int fd);
 static t_map	*create_map(t_list *file_in_list);
 static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map);
 static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y);
-static void		get_highest_point(t_map *map);
 
 /**
  * @brief Initialize the map structure.
@@ -156,26 +155,4 @@ static t_list	*put_file_in_list(int fd)
 		buff = get_next_line(fd);
 	}
 	return (list);
-}
-
-void	get_highest_point(t_map *map)
-{
-	int		row;
-	int		col;
-
-	if (map->width == 0 || map->height == 0)
-		return ;
-	map->highest_point = INT_MIN;
-	row = 0;
-	while (row < map->height)
-	{
-		col = 0;
-		while (col < map->width)
-		{
-			if (map->map_base[row][col].z > map->highest_point)
-				map->highest_point = map->map_base[row][col].z;
-			col++;
-		}
-		row++;
-	}
 }

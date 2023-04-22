@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/20 15:44:45 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:15:08 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_fdf	*fdf_init(char *file);
 void	get_cam_rot_speed(t_fdf *fdf_data);
 void	get_cam_trans_speed(t_fdf *fdf_data);
 void	get_cam_zoom_speed(t_fdf *fdf_data);
+void	get_highest_point(t_map *map);
 
 #endif
