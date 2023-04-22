@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:34 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 15:47:04 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 15:49:13 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void	create_line_duet(t_fdf *fdf, t_vec3d **dmap, t_nlx_line **lines)
 	int	row;
 	int	col;
 	int	i;
-
 
 	i = 0;
 	row = 0;

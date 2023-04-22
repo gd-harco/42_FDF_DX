@@ -114,13 +114,13 @@ static void	init_rotate(t_fdf *fdf_data)
 {
 	if (fdf_data->world->proj_type == PERSP)
 	{
-		fdf_data->world->rot->rot_x = - (M_PI/4.0f);
+		fdf_data->world->rot->rot_x = - (M_PI / 4.0f);
 		fdf_data->world->rot->rot_y = 0.0f;
 		fdf_data->world->rot->rot_z = 0.0f;
 	}
 	else if (fdf_data->world->proj_type == ISO)
 	{
-		fdf_data->world->rot->rot_x = - 120 * M_PI / 180.0f;
+		fdf_data->world->rot->rot_x = -120 * M_PI / 180.0f;
 		fdf_data->world->rot->rot_y = 0.0f;
 		fdf_data->world->rot->rot_z = 45 * M_PI / 180.0f;
 	}
