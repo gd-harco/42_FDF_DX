@@ -12,6 +12,9 @@
 
 #include "fdf.h"
 
+//TODO reparer le changement d'altitude
+//TODO ajouter le get _rot/zoom speed
+//TODO regler le niveau de zoom par dafaut en proj iso
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf_data;
@@ -22,10 +25,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	fdf_data = fdf_init(argv[1]);
-	if (fdf_data->world->proj_type == PERSP)
-		project_view(fdf_data);
-	else if (fdf_data->world->proj_type == ISO)
-		iso(fdf_data);
+	project_view(fdf_data);
 	draw_all(fdf_data);
 	mlx_hook(fdf_data->mlx_win->win_ptr, KeyPress,
 		KeyPressMask, key_handler_in, fdf_data);

@@ -69,12 +69,25 @@ void rotation(int key, t_fdf *fdf_data)
 	draw_all(fdf_data);
 }
 
-void zoom(int key, t_fdf *fdf_data)
+void	zoom(int key, t_fdf *fdf_data)
 {
-	if (key == XK_KP_Add)
-		fdf_data->world->trans->translate_z -= 0.05f;
-	else if (key == XK_KP_Subtract)
-		fdf_data->world->trans->translate_z += 0.05f;
+	if (fdf_data->world->proj_type == ISO)
+	{
+		if (key == XK_KP_Add)
+			fdf_data->iso_factor += 0.05f;
+		else if (key == XK_KP_Subtract)
+			fdf_data->iso_factor -= 0.05f;
+		free(fdf_data->world->proj->iso_m);
+		fdf_data->world->proj->iso_m = get_iso_matrix(fdf_data->iso_factor);
+		fdf_data->world->proj->current_m = fdf_data->world->proj->iso_m;
+	}
+		else if (fdf_data->world->proj_type == PERSP)
+	{
+		if (key == XK_KP_Add)
+			fdf_data->world->trans->translate_z -= 0.05f;
+		else if (key == XK_KP_Subtract)
+			fdf_data->world->trans->translate_z += 0.05f;
+	}
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	update_translation(fdf_data->world->trans);

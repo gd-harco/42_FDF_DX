@@ -31,6 +31,7 @@
  * @param mlx_win structure containing the window information anf mlx pointer
  * @param img structure containing the image information
  * @param proj_info structure containing the projection information
+ * @param iso_factor factor used to calculate the iso projection
  */
 typedef struct s_fdf
 {

@@ -69,7 +69,7 @@ static void	get_proj(t_fdf *fdf_data)
 	fdf_data->world->proj->persp_m = get_persp_matrix(fdf_data->world->proj);
 	fdf_data->iso_factor = abs(WIDTH * HEIGHT
 			- (fdf_data->map->width * fdf_data->map->height)) * 0.000002f;
-	fdf_data->world->proj->iso_m = get_iso_matrix(fdf_data->world->proj, fdf_data->mlx_win);
+	fdf_data->world->proj->iso_m = get_iso_matrix(fdf_data->iso_factor);
 	if (fdf_data->world->proj_type == ISO)
 		fdf_data->world->proj->current_m = fdf_data->world->proj->iso_m;
 	else if (fdf_data->world->proj_type == PERSP)

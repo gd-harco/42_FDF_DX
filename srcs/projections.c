@@ -17,30 +17,29 @@ static void	set_visibility(t_vec3d *vec, float z_near);
 static void	scale_in_view(t_vec3d *to_scale);
 static void	scale_in_view_iso(t_vec3d *to_scale);
 
-void	iso(t_fdf *fdf_data)
-{
-	int	row;
-	int	col;
-
-	row = 0;
-	while (row < fdf_data->map->height)
-	{
-		col = 0;
-		while (col < fdf_data->map->height)
-		{
-			fdf_data->map->map_projected[row][col].x
-				= (fdf_data->map->map_base[row][col].x
-					- fdf_data->map->map_base[row][col].y) * cos(0.523599);
-			fdf_data->map->map_projected[row][col].y
-				= -fdf_data->map->map_base[row][col].z
-				+ (fdf_data->map->map_base[row][col].x
-					+ fdf_data->map->map_base[row][col].y) * sin(0.523599);
-			scale_in_view_iso(&fdf_data->map->map_projected[row][col]);
-			col++;
-		}
-		row++;
-	}
-}
+//void	iso(t_fdf *fdf_data)
+//{
+//	int	row;
+//	int	col;
+//
+//	row = 0;
+//	while (row < fdf_data->map->height)
+//	{
+//		col = 0;
+//		while (col < fdf_data->map->height)
+//		{
+//			multiply_vector_matrix(fdf_data->world->world_m,
+//				&fdf_data->map->map_base[row][col],
+//				&fdf_data->map->map_projected[row][col]);
+//			multiply_vector_matrix(fdf_data->world->proj->current_m,
+//				&fdf_data->map->map_projected[row][col],
+//				&fdf_data->map->map_projected[row][col]);
+//			scale_in_view_iso(&fdf_data->map->map_projected[row][col]);
+//			col++;
+//		}
+//		row++;
+//	}
+//}
 
 void	project_view(t_fdf *fdf_data)
 {
@@ -61,7 +60,10 @@ void	project_view(t_fdf *fdf_data)
 			multiply_vector_matrix(fdf_data->world->proj->current_m,
 				&tmp,
 				&fdf_data->map->map_projected[row][col]);
-			scale_in_view(&fdf_data->map->map_projected[row][col]);
+			if (fdf_data->world->proj_type == PERSP)
+				scale_in_view(&fdf_data->map->map_projected[row][col]);
+			if (fdf_data->world->proj_type == ISO)
+				scale_in_view_iso(&fdf_data->map->map_projected[row][col]);
 			set_visibility(&fdf_data->map->map_projected[row][col],
 				fdf_data->world->proj->z_near);
 			col++;
@@ -89,8 +91,8 @@ void	vector_divide(t_vec3d *a, float k)
 
 static void	scale_in_view_iso(t_vec3d *to_scale)
 {
-	to_scale->x = (to_scale->x + 1.0f) * (float)WIDTH / 2.0f + 0.5f;
-	to_scale->y = (to_scale->y + 1.0f) * (float)HEIGHT / 2.0f + 0.5f;
+	to_scale->x = (to_scale->x + 1.0f) + (float)WIDTH / 2.0f + 0.5f;
+	to_scale->y = (to_scale->y + 1.0f) + (float)HEIGHT / 2.0f + 0.5f;
 }
 
 static void	scale_in_view(t_vec3d *to_scale)
