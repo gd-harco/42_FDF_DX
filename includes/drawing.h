@@ -1,5 +1,17 @@
-#ifndef DRAWING_C
-# define DRAWING_C
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   drawing.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/22 16:14:11 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/22 16:14:24 by gd-harco         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DRAWING_H
+# define DRAWING_H
 
 # include "nlx.h"
 # include "init.h"
