@@ -38,9 +38,12 @@ SRCS_LIST		=	main.c				\
 					exit.c				\
 					init.c				\
 					key_handler.c		\
+					mouvement.c			\
+					parsing_util.c		\
+					parsing.c			\
 					projections.c		\
-					update.c			\
-					parsing.c
+					update_camera.c		\
+					update_world.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h} \
 
