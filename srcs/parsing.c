@@ -70,9 +70,10 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	x = -1;
 	while (++x < map->width)
 	{
-		vec3d_array[x].x = x - map->width / 2;
-		vec3d_array[x].y = y - map->height / 2;
-		vec3d_array[x].z = -ft_atoi(splitted_line[x]);
+		vec3d_array[x].x = (float)x - (float)map->width / 2;
+		vec3d_array[x].y = (float)y - (float)map->height / 2;
+		vec3d_array[x].z = - (float)ft_atoi(splitted_line[x]);
+		vec3d_array[x].initial_z = vec3d_array[x].z;
 		vec3d_array[x].w = 1.0f;
 	}
 	ft_free_split(splitted_line);

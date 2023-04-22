@@ -142,15 +142,17 @@ void change_altitude(int key, t_fdf *fdf_data)
 
 	row = 0;
 	if (key == XK_equal)
-		fdf_data->altitude_factor += 0.05f;
+		fdf_data->altitude_factor += 0.01f;
 	else
-		fdf_data->altitude_factor -= 0.05f;
+		fdf_data->altitude_factor -= 0.01f;
 	while (row < fdf_data->map->height)
 	{
 		col = 0;
 		while (col < fdf_data->map->width)
 		{
-			fdf_data->map->map_base[row][col].z *= fdf_data->altitude_factor;
+			fdf_data->map->map_base[row][col].z
+				= fdf_data->map->map_base[row][col].initial_z
+				* fdf_data->altitude_factor;
 			col++;
 		}
 		row++;

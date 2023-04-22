@@ -17,30 +17,6 @@ static void	set_visibility(t_vec3d *vec, float z_near);
 static void	scale_in_view(t_vec3d *to_scale);
 static void	scale_in_view_iso(t_vec3d *to_scale);
 
-//void	iso(t_fdf *fdf_data)
-//{
-//	int	row;
-//	int	col;
-//
-//	row = 0;
-//	while (row < fdf_data->map->height)
-//	{
-//		col = 0;
-//		while (col < fdf_data->map->height)
-//		{
-//			multiply_vector_matrix(fdf_data->world->world_m,
-//				&fdf_data->map->map_base[row][col],
-//				&fdf_data->map->map_projected[row][col]);
-//			multiply_vector_matrix(fdf_data->world->proj->current_m,
-//				&fdf_data->map->map_projected[row][col],
-//				&fdf_data->map->map_projected[row][col]);
-//			scale_in_view_iso(&fdf_data->map->map_projected[row][col]);
-//			col++;
-//		}
-//		row++;
-//	}
-//}
-
 void	project_view(t_fdf *fdf_data)
 {
 	int			row;
