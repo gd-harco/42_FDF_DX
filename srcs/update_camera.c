@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   update_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:43:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 18:18:35 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:07:53 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,30 @@ void	update_translation(t_trans_info *trans)
 	trans->m = get_translation_matrix(trans);
 }
 
-void	update_projection(t_proj_info *proj, t_fdf *fdf)
+void	change_projection(int key, t_fdf *fdf_data)
 {
-	free(proj->persp_m);
-	proj->persp_m = get_persp_matrix(proj);
-	if (fdf->world->proj_type == ISO)
-		proj->current_m = proj->iso_m;
-	else if (fdf->world->proj_type == PERSP)
-		proj->current_m = proj->persp_m;
-}
-
-void	update_world(t_world_i *world)
-{
-	free(world->world_m);
-	world->world_m = get_world_matrix(world);
-}
-
-void	update_image(t_fdf *fdf_data)
-{
+	if (key == XK_i)
+	{
+		fdf_data->world->rot->rot_x = -120 * M_PI / 180.0f;
+		fdf_data->world->rot->rot_y = 0.0f;
+		fdf_data->world->rot->rot_z = 45 * M_PI / 180.0f;
+		fdf_data->world->proj->current_m = fdf_data->world->proj->iso_m;
+		fdf_data->world->proj_type = ISO;
+	}
+	else if (key == XK_p)
+	{
+		fdf_data->world->rot->rot_x = (-(M_PI / 4.0f));
+		fdf_data->world->rot->rot_y = 0.0f;
+		fdf_data->world->rot->rot_z = 0.0f;
+		fdf_data->world->trans->translate_x = 0.0f;
+		fdf_data->world->proj->current_m = fdf_data->world->proj->persp_m;
+		fdf_data->world->proj_type = PERSP;
+	}
 	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj, fdf_data);
+	update_rotation(fdf_data->world->rot);
+	update_translation(fdf_data->world->trans);
+	update_world(fdf_data->world);
 	project_view(fdf_data);
 	draw_all(fdf_data);
 }
