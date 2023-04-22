@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/20 16:02:56 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:13:07 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ void	project_view(t_fdf *fdf_data)
 		while (col < fdf_data->map->width)
 		{
 			multiply_vector_matrix(fdf_data->world->world_m,
-				&fdf_data->map->map_base[row][col],
-				&tmp);
+				&fdf_data->map->map_base[row][col], &tmp);
 			multiply_vector_matrix(fdf_data->world->proj->current_m,
-				&tmp,
-				&fdf_data->map->map_projected[row][col]);
+				&tmp, &fdf_data->map->map_projected[row][col]);
 			if (fdf_data->world->proj_type == PERSP)
 				scale_in_view(&fdf_data->map->map_projected[row][col]);
 			if (fdf_data->world->proj_type == ISO)
