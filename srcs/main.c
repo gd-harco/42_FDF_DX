@@ -24,6 +24,9 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	fdf_data = fdf_init(argv[1]);
+	printf("rotation : %.6f\n", fdf_data->cam_rot_speed);
+	printf("translation : %.6f\n", fdf_data->cam_trans_speed);
+	printf("zoom : %.6f\n", fdf_data->cam_zoom_speed);
 	project_view(fdf_data);
 	draw_all(fdf_data);
 	mlx_hook(fdf_data->mlx_win->win_ptr, KeyPress,

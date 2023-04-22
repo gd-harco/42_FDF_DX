@@ -33,6 +33,7 @@ HEADERS_LIST	=	drawing.h		\
 					update.h
 
 SRCS_LIST		=	main.c				\
+					camera.c			\
 					drawing.c			\
 					exit.c				\
 					init.c				\

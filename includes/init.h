@@ -41,8 +41,14 @@ typedef struct s_fdf
 	t_world_i	*world;
 	float		iso_factor;
 	float		altitude_factor;
+	float		cam_rot_speed;
+	float		cam_trans_speed;
+	float		cam_zoom_speed;
 }				t_fdf;
 
 t_fdf	*fdf_init(char *file);
+void	get_cam_rot_speed(t_fdf *fdf_data);
+void	get_cam_trans_speed(t_fdf *fdf_data);
+void	get_cam_zoom_speed(t_fdf *fdf_data);
 
 #endif

@@ -55,6 +55,9 @@ t_fdf	*fdf_init(char *file)
 	get_world(fdf_data);
 	get_proj(fdf_data);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
+	get_cam_trans_speed(fdf_data);
+	get_cam_rot_speed(fdf_data);
+	get_cam_zoom_speed(fdf_data);
 	return (fdf_data);
 }
 
