@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-//TODO reparer le changement d'altitude
 //TODO ajouter le get _rot/zoom speed
 //TODO regler le niveau de zoom par dafaut en proj iso
 int	main(int argc, char **argv)
