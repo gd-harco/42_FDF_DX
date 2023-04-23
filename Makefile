@@ -67,6 +67,7 @@ MKDIR			=	mkdir -p
 # ********* RULES ******** #
 
 all				:
+					git submodule update --init --recursive
 					make -C lib/libft
 					make -C lib/new_libx
 					make ${NAME}
