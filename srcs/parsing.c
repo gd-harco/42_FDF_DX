@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 17:26:22 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 22:33:53 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	int		x;
 
 	splitted_line = ft_split(line, ' ');
-	map->width = (int)ft_array_length((void **)splitted_line);
+	if (map->width != (int)ft_array_length((void **)splitted_line))
+	{
+		ft_free_split(splitted_line);
+		return (ft_dprintf(2, "Error: line %d is not well formated\n", y), NULL);
+	}
 	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
 	if (!vec3d_array)
 		return (perror("Error when allocating memory for map\n"), NULL);
@@ -101,6 +105,8 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 	{
 		vec3d_array[y] = create_vec3d_array_from_line(file_in_list->content,
 				map, y);
+		if (!vec3d_array[y])
+			return (NULL);
 		map->map_projected[y] = malloc(sizeof(t_vec3d) * map->width);
 		ft_bzero(map->map_projected[y], sizeof(t_vec3d) * map->width);
 		file_in_list = file_in_list->next;
@@ -120,12 +126,18 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 static t_map	*create_map(t_list *file_in_list)
 {
 	t_map	*map;
+	char	**buff_for_width;
 
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (perror("Error when allocating memory for map\n"), NULL);
 	map->height = ft_lstsize(file_in_list);
+	buff_for_width = ft_split(file_in_list->content, ' ');
+	map->width = (int)ft_array_length((void **)buff_for_width);
+	ft_free_split(buff_for_width);
 	map->map_base = create_vec3d_array(file_in_list, map);
+	if (!map->map_base)
+		return (ft_lstclear(&file_in_list, &free), NULL);
 	get_highest_point(map);
 	ft_lstclear(&file_in_list, &free);
 	return (map);
@@ -142,12 +154,14 @@ static t_list	*put_file_in_list(int fd)
 	t_list	*list;
 	t_list	*new_node;
 	char	*buff;
+	int		nb_line;
 
 	list = NULL;
+	nb_line = 1;
 	buff = get_next_line(fd);
 	while (buff)
 	{
-		new_node = ft_lstnew(buff);
+		new_node = ft_lstnew(buff, nb_line);
 		if (new_node == NULL)
 		{
 			ft_lstclear(&list, &free);
@@ -155,6 +169,7 @@ static t_list	*put_file_in_list(int fd)
 		}
 		ft_lstadd_back(&list, new_node);
 		buff = get_next_line(fd);
+		nb_line++;
 	}
 	return (list);
 }
