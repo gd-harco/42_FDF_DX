@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/23 15:20:28 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/23 15:32:26 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	if (map->width != (int)ft_array_length((void **)splitted_line))
 	{
 		ft_free_split(splitted_line);
-		return (ft_dprintf(2, "Error: line %d is not the same length as the first one\nAborting...\n", y + 1), NULL);
+		return (ft_dprintf(2, "Error: line %d is not \
+		the same length as the first one", y + 1), NULL);
 	}
 	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
 	if (!vec3d_array)
