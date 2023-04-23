@@ -67,18 +67,11 @@ MKDIR			=	mkdir -p
 # ********* RULES ******** #
 
 all				:
-					git submodule update --init --recursive
-					make ${LIBFT}
-					make ${NLX}
+					make -C lib/libft
+					make -C lib/new_libx
 					make ${NAME}
 
 # ---- Variables Rules ---- #
-
-${LIBFT}		:
-					make -C lib/libft
-
-${NLX}			:
-					make -C lib/new_libx
 
 ${NAME}			:	${OBJS} ${HEADERS}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -I ${DIR_HEADERS_NLX} ${OBJS} ${FRAMEWORKS} -o ${NAME}
