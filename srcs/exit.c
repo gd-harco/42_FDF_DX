@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 18:04:27 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/23 15:17:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,19 @@ static void	free_map(t_map *map)
 	free(map->map_base);
 	free(map->map_projected);
 	free(map);
+}
+
+void	exit_file_not_regular(t_map *map, t_vec3d **vec3d_array)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->map_projected[i]);
+		free(vec3d_array[i]);
+		i++;
+	}
+	free(map->map_projected);
+	free(vec3d_array);
 }

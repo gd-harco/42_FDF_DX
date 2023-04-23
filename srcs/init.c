@@ -37,7 +37,7 @@ t_fdf	*fdf_init(char *file)
 {
 	t_fdf	*fdf_data;
 
-	fdf_data = (t_fdf *)malloc(sizeof(t_fdf));
+	fdf_data = malloc(sizeof(t_fdf));
 	if (!fdf_data)
 		return (NULL);
 	fdf_data->altitude_factor = 1.0f;

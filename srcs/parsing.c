@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 22:33:53 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/23 15:20:28 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	if (map->width != (int)ft_array_length((void **)splitted_line))
 	{
 		ft_free_split(splitted_line);
-		return (ft_dprintf(2, "Error: line %d is not well formated\n", y), NULL);
+		return (ft_dprintf(2, "Error: line %d is not the same length as the first one\nAborting...\n", y + 1), NULL);
 	}
 	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
 	if (!vec3d_array)
@@ -96,8 +96,8 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 	t_vec3d	**vec3d_array;
 	int		y;
 
-	vec3d_array = malloc(sizeof(t_vec3d *) * map->height);
-	map->map_projected = malloc(sizeof(t_vec3d *) * map->height);
+	vec3d_array = ft_calloc(map->height, sizeof(t_vec3d *));
+	map->map_projected = ft_calloc(map->height, sizeof(t_vec3d *));
 	if (!vec3d_array || !map->map_projected)
 		return (perror("Error when allocating memory for map\n"), NULL);
 	y = 0;
@@ -106,7 +106,7 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 		vec3d_array[y] = create_vec3d_array_from_line(file_in_list->content,
 				map, y);
 		if (!vec3d_array[y])
-			return (NULL);
+			return (exit_file_not_regular(map, vec3d_array), NULL);
 		map->map_projected[y] = malloc(sizeof(t_vec3d) * map->width);
 		ft_bzero(map->map_projected[y], sizeof(t_vec3d) * map->width);
 		file_in_list = file_in_list->next;
@@ -137,7 +137,10 @@ static t_map	*create_map(t_list *file_in_list)
 	ft_free_split(buff_for_width);
 	map->map_base = create_vec3d_array(file_in_list, map);
 	if (!map->map_base)
+	{
+		free(map);
 		return (ft_lstclear(&file_in_list, &free), NULL);
+	}
 	get_highest_point(map);
 	ft_lstclear(&file_in_list, &free);
 	return (map);
@@ -161,7 +164,7 @@ static t_list	*put_file_in_list(int fd)
 	buff = get_next_line(fd);
 	while (buff)
 	{
-		new_node = ft_lstnew(buff, nb_line);
+		new_node = ft_lstnew(buff);
 		if (new_node == NULL)
 		{
 			ft_lstclear(&list, &free);
