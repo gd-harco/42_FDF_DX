@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 11:00:37 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 13:02:11 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_tracker
 	bool	t_win_loaded;
 	bool	t_img_loaded;
 	bool	t_world_loaded;
+	bool	t_proj_loaded;
 }		t_tracker;
 
 
@@ -62,4 +63,5 @@ void	get_cam_trans_speed(t_fdf *fdf_data);
 void	get_cam_zoom_speed(t_fdf *fdf_data);
 void	get_highest_point(t_map *map);
 void	init_tracker(t_fdf *fdf_data);
+void	sub_init(t_fdf *fdf_data);
 #endif

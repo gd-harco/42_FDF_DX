@@ -27,41 +27,17 @@ static void	get_world(t_fdf *fdf_data);
 static void	init_translate(t_fdf *fdf_data);
 static void	init_rotate(t_fdf *fdf_data);
 
-/**
- * @brief Initialize the fdf structure.
- * @details Initialize the fdf structure by calling the needed nlx functions
- * @param file The file containing the map
- * @return *fdf_data The fdf structure allocated on the heap (must be freed)
- */
-t_fdf	*fdf_init(char *file)
-{
-	t_fdf	*fdf_data;
 
-	fdf_data = malloc(sizeof(t_fdf));
-	if (!fdf_data)
-		exit (1);
-	init_tracker(fdf_data);
-	fdf_data->altitude_factor = 1.0f;
-	fdf_data->map = init_map(file);
-	fdf_data->tracker->t_map_loaded = true;
-	if (fdf_data->map == NULL)
-		return (free(fdf_data), exit(3), NULL);
-	fdf_data->mlx_win = malloc(sizeof(t_win));
-	if (!fdf_data->mlx_win)
-		exit_program(fdf_data);
-	fdf_data->tracker->t_win_loaded = true;
-	fdf_data->world = malloc(sizeof (t_world_i));
-	fdf_data->tracker->t_world_loaded = true;
-	if (!fdf_data->world)
-		exit_program(fdf_data);
+void	sub_init(t_fdf *fdf_data)
+{
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
+	fdf_data->tracker->t_img_loaded = true;
 	get_world(fdf_data);
 	get_proj(fdf_data);
 	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	get_cam_trans_speed(fdf_data);
 	get_cam_rot_speed(fdf_data);
 	get_cam_zoom_speed(fdf_data);
-	return (fdf_data);
 }
 
 static void	get_proj(t_fdf *fdf_data)
@@ -105,6 +81,8 @@ static void	get_world(t_fdf *fdf_data)
 	init_translate(fdf_data);
 	init_rotate(fdf_data);
 	fdf_data->world->world_m = get_world_matrix(fdf_data->world);
+	if (!fdf_data->world->world_m)
+		exit_program(fdf_data);
 }
 
 static void	init_translate(t_fdf *fdf_data)
@@ -121,24 +99,24 @@ static void	init_translate(t_fdf *fdf_data)
 	fdf_data->world->trans->m = get_translation_matrix(fdf_data->world->trans);
 }
 
-static void	init_rotate(t_fdf *fdf_data)
+static void	init_rotate(t_fdf *fdf)
 {
-	if (fdf_data->world->proj_type == PERSP)
+	if (fdf->world->proj_type == PERSP)
 	{
-		fdf_data->world->rot->rot_x = - (M_PI / 4.0f);
-		fdf_data->world->rot->rot_y = 0.0f;
-		fdf_data->world->rot->rot_z = 0.0f;
+		fdf->world->rot->rot_x = - (M_PI / 4.0f);
+		fdf->world->rot->rot_y = 0.0f;
+		fdf->world->rot->rot_z = 0.0f;
 	}
-	else if (fdf_data->world->proj_type == ISO)
+	else if (fdf->world->proj_type == ISO)
 	{
-		fdf_data->world->rot->rot_x = -120 * M_PI / 180.0f;
-		fdf_data->world->rot->rot_y = 0.0f;
-		fdf_data->world->rot->rot_z = 45 * M_PI / 180.0f;
+		fdf->world->rot->rot_x = -120 * M_PI / 180.0f;
+		fdf->world->rot->rot_y = 0.0f;
+		fdf->world->rot->rot_z = 45 * M_PI / 180.0f;
 	}
-	fdf_data->world->rot->x_rot_m
-		= get_x_rotation_matrix(fdf_data->world->rot->rot_x);
-	fdf_data->world->rot->y_rot_m
-		= get_y_rotation_matrix(fdf_data->world->rot->rot_y);
-	fdf_data->world->rot->z_rot_m
-		= get_z_rotation_matrix(fdf_data->world->rot->rot_z);
+	fdf->world->rot->x_rot_m
+		= get_x_rotation_matrix(fdf->world->rot->rot_x);
+	fdf->world->rot->y_rot_m
+		= get_y_rotation_matrix(fdf->world->rot->rot_y);
+	fdf->world->rot->z_rot_m
+		= get_z_rotation_matrix(fdf->world->rot->rot_z);
 }
