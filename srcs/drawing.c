@@ -6,12 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:34 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 15:49:13 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 10:39:02 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static bool			check_for_null(t_nlx_line **lines, int nb_line);
 static void			create_line_duet(
 						t_fdf *fdf, t_vec3d **dmap, t_nlx_line **lines);
 static t_nlx_line	**get_all_line(
@@ -26,6 +27,8 @@ void	draw_all(t_fdf *fdf_data)
 	i = 0;
 	all_line = get_all_line(fdf_data,
 			fdf_data->map->map_projected, &nb_line);
+	if (all_line == NULL || check_for_null(all_line, nb_line))
+		exit_program(fdf_data);
 	while (nb_line)
 	{
 		if (all_line[i]->is_visible)
@@ -56,7 +59,7 @@ t_nlx_line	**get_all_line(t_fdf *fdf, t_vec3d **dmap, int *nb_line)
 		- fdf->map->width - fdf->map->height;
 	lines = malloc(sizeof(t_nlx_line) * (*nb_line));
 	if (!lines)
-		return (NULL);
+		return (perror("Error when creating the lines"), NULL);
 	create_line_duet(fdf, dmap, lines);
 	return (lines);
 }
@@ -84,4 +87,26 @@ static void	create_line_duet(t_fdf *fdf, t_vec3d **dmap, t_nlx_line **lines)
 		}
 		row++;
 	}
+}
+
+static bool	check_for_null(t_nlx_line **lines, int nb_line)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb_line)
+	{
+		if (lines[i] == NULL)
+		{
+			perror("Error when creating the lines");
+			ft_dprintf(2, "Line %d is NULL\n", i);
+			i = 0;
+			while (i < nb_line)
+				free(lines[i++]);
+			free(lines);
+			return (true);
+		}
+		i++;
+	}
+	return (false);
 }
