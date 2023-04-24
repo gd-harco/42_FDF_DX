@@ -39,18 +39,21 @@ t_fdf	*fdf_init(char *file)
 
 	fdf_data = malloc(sizeof(t_fdf));
 	if (!fdf_data)
-		return (NULL);
+		exit (1);
+	init_tracker(fdf_data);
 	fdf_data->altitude_factor = 1.0f;
 	fdf_data->map = init_map(file);
+	fdf_data->tracker->t_map_loaded = true;
 	if (fdf_data->map == NULL)
-	{
-		free(fdf_data);
-		exit (3);
-	}
+		return (free(fdf_data), exit(3), NULL);
 	fdf_data->mlx_win = malloc(sizeof(t_win));
+	if (!fdf_data->mlx_win)
+		exit_program(fdf_data);
+	fdf_data->tracker->t_win_loaded = true;
 	fdf_data->world = malloc(sizeof (t_world_i));
-	if (!fdf_data->mlx_win || !fdf_data->world)
-		return (NULL);
+	fdf_data->tracker->t_world_loaded = true;
+	if (!fdf_data->world)
+		exit_program(fdf_data);
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	get_world(fdf_data);
 	get_proj(fdf_data);

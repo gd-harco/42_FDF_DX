@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/23 15:17:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 11:16:09 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,20 @@ static void	free_map(t_map *map);
 
 int	exit_program(t_fdf *fdf_data)
 {
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
-	mlx_destroy_window(fdf_data->mlx_win->mlx, fdf_data->mlx_win->win_ptr);
-	mlx_destroy_display(fdf_data->mlx_win->mlx);
-	free_world(fdf_data->world);
-	free_map(fdf_data->map);
-	free(fdf_data->mlx_win->mlx);
-	free(fdf_data->mlx_win);
+	if (fdf_data->tracker->t_img_loaded)
+		mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
+	if (fdf_data->tracker->t_win_loaded)
+	{
+		mlx_destroy_window(fdf_data->mlx_win->mlx, fdf_data->mlx_win->win_ptr);
+		mlx_destroy_display(fdf_data->mlx_win->mlx);
+		free(fdf_data->mlx_win->mlx);
+		free(fdf_data->mlx_win);
+	}
+	if (fdf_data->tracker->t_world_loaded)
+		free_world(fdf_data->world);
+	if (fdf_data->tracker->t_map_loaded)
+		free_map(fdf_data->map);
+	free(fdf_data->tracker);
 	free(fdf_data);
 	close(0);
 	close(1);
