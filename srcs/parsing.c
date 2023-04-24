@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 09:47:56 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 10:18:43 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,11 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 	int		y;
 
 	vec3d_array = ft_calloc(map->height, sizeof(t_vec3d *));
+	if (!vec3d_array)
+		return (perror("Error when allocating \"map_base\""), NULL);
 	map->map_projected = ft_calloc(map->height, sizeof(t_vec3d *));
-	if (!vec3d_array || !map->map_projected)
-		return (perror("Error when allocating memory for map\n"), NULL);
+	if (!map->map_projected)
+		return (perror("Error when allocating \"map_projected\""), NULL);
 	y = 0;
 	while (y < map->height)
 	{
@@ -106,6 +108,9 @@ static t_vec3d	**create_vec3d_array(t_list *file_in_list, t_map *map)
 		if (!vec3d_array[y])
 			return (exit_file_not_regular(map, vec3d_array), NULL);
 		map->map_projected[y] = malloc(sizeof(t_vec3d) * map->width);
+		if (!map->map_projected[y])
+			return (ft_dprintf(2, "Malloc failed at line %d\n", y + 1),
+				exit_file_not_regular(map, vec3d_array), NULL);
 		ft_bzero(map->map_projected[y], sizeof(t_vec3d) * map->width);
 		file_in_list = file_in_list->next;
 		y++;
@@ -128,9 +133,13 @@ static t_map	*create_map(t_list *file_in_list)
 
 	map = malloc(sizeof(t_map));
 	if (!map)
-		return (perror("Error when allocating memory for map\n"), NULL);
+		return (ft_lstclear(&file_in_list, &free),
+			perror("Error when allocating memory for map\n"), NULL);
 	map->height = ft_lstsize(file_in_list);
 	buff_for_width = ft_split(file_in_list->content, ' ');
+	if (!buff_for_width)
+		return (ft_lstclear(&file_in_list, &free),
+			perror("Error when allocating memory for map\n"), NULL);
 	map->width = (int)ft_array_length((void **)buff_for_width);
 	ft_free_split(buff_for_width);
 	map->map_base = create_vec3d_array(file_in_list, map);
