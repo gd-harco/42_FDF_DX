@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 09:43:24 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 09:47:56 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
 	if (!vec3d_array)
 		return (ft_free_split(splitted_line),
-			perror("Error when allocating memory for map"), NULL);
+			perror("Error when allocating memory for a line"),
+			ft_dprintf(2, "Failed at line %d\n", y + 1), NULL);
 	x = -1;
 	while (++x < map->width)
 	{
