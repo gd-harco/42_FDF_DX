@@ -6,13 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 11:16:09 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 11:59:18 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	free_world(t_world_i *world);
+static void	free_world(t_world_i *world, bool t_proj_loaded);
 static void	free_map(t_map *map);
 
 int	exit_program(t_fdf *fdf_data)
@@ -27,7 +27,7 @@ int	exit_program(t_fdf *fdf_data)
 		free(fdf_data->mlx_win);
 	}
 	if (fdf_data->tracker->t_world_loaded)
-		free_world(fdf_data->world);
+		free_world(fdf_data->world, fdf_data->tracker->t_proj_loaded);
 	if (fdf_data->tracker->t_map_loaded)
 		free_map(fdf_data->map);
 	free(fdf_data->tracker);
@@ -38,7 +38,7 @@ int	exit_program(t_fdf *fdf_data)
 	exit(0);
 }
 
-static void	free_world(t_world_i *world)
+static void	free_world(t_world_i *world, bool t_proj_loaded)
 {
 	free(world->world_m);
 	free(world->rot->x_rot_m);
@@ -47,9 +47,12 @@ static void	free_world(t_world_i *world)
 	free(world->rot);
 	free(world->trans->m);
 	free(world->trans);
-	free(world->proj->persp_m);
-	free(world->proj->iso_m);
 	free(world->proj);
+	if (t_proj_loaded)
+	{
+		free(world->proj->persp_m);
+		free(world->proj->iso_m);
+	}
 	free(world);
 }
 

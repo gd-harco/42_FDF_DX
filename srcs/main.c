@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:09:47 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:17:09 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 12:02:14 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	}
 	fdf_data = fdf_init(argv[1]);
 	project_view(fdf_data);
+	fdf_data->tracker->t_proj_loaded = true;
 	draw_all(fdf_data);
 	mlx_hook(fdf_data->mlx_win->win_ptr, KeyPress,
 		KeyPressMask, key_handler_in, fdf_data);

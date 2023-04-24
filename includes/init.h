@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 11:00:37 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 11:56:28 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_tracker
 	bool	t_win_loaded;
 	bool	t_img_loaded;
 	bool	t_world_loaded;
+	bool	t_proj_loaded;
 }		t_tracker;
 
 

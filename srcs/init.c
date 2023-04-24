@@ -105,6 +105,8 @@ static void	get_world(t_fdf *fdf_data)
 	init_translate(fdf_data);
 	init_rotate(fdf_data);
 	fdf_data->world->world_m = get_world_matrix(fdf_data->world);
+	if (!fdf_data->world->world_m)
+		exit_program(fdf_data);
 }
 
 static void	init_translate(t_fdf *fdf_data)
@@ -121,24 +123,24 @@ static void	init_translate(t_fdf *fdf_data)
 	fdf_data->world->trans->m = get_translation_matrix(fdf_data->world->trans);
 }
 
-static void	init_rotate(t_fdf *fdf_data)
+static void	init_rotate(t_fdf *fdf)
 {
-	if (fdf_data->world->proj_type == PERSP)
+	if (fdf->world->proj_type == PERSP)
 	{
-		fdf_data->world->rot->rot_x = - (M_PI / 4.0f);
-		fdf_data->world->rot->rot_y = 0.0f;
-		fdf_data->world->rot->rot_z = 0.0f;
+		fdf->world->rot->rot_x = - (M_PI / 4.0f);
+		fdf->world->rot->rot_y = 0.0f;
+		fdf->world->rot->rot_z = 0.0f;
 	}
-	else if (fdf_data->world->proj_type == ISO)
+	else if (fdf->world->proj_type == ISO)
 	{
-		fdf_data->world->rot->rot_x = -120 * M_PI / 180.0f;
-		fdf_data->world->rot->rot_y = 0.0f;
-		fdf_data->world->rot->rot_z = 45 * M_PI / 180.0f;
+		fdf->world->rot->rot_x = -120 * M_PI / 180.0f;
+		fdf->world->rot->rot_y = 0.0f;
+		fdf->world->rot->rot_z = 45 * M_PI / 180.0f;
 	}
-	fdf_data->world->rot->x_rot_m
-		= get_x_rotation_matrix(fdf_data->world->rot->rot_x);
-	fdf_data->world->rot->y_rot_m
-		= get_y_rotation_matrix(fdf_data->world->rot->rot_y);
-	fdf_data->world->rot->z_rot_m
-		= get_z_rotation_matrix(fdf_data->world->rot->rot_z);
+	fdf->world->rot->x_rot_m
+		= get_x_rotation_matrix(fdf->world->rot->rot_x);
+	fdf->world->rot->y_rot_m
+		= get_y_rotation_matrix(fdf->world->rot->rot_y);
+	fdf->world->rot->z_rot_m
+		= get_z_rotation_matrix(fdf->world->rot->rot_z);
 }
