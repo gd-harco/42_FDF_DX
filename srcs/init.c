@@ -92,10 +92,16 @@ static void	get_world(t_fdf *fdf_data)
 	fdf_data->world->trans = malloc(sizeof (t_trans_info));
 	fdf_data->world->rot = malloc(sizeof (t_rot_info));
 	fdf_data->world->proj = malloc(sizeof (t_proj_info));
-	if (fdf_data->world->trans == NULL
-		|| fdf_data->world->rot == NULL
-		|| fdf_data->world->proj == NULL)
-		exit(0);
+	if (!fdf_data->world->trans || !fdf_data->world->rot
+		|| !fdf_data->world->proj)
+	{
+		free(fdf_data->world->trans);
+		free(fdf_data->world->rot);
+		free(fdf_data->world->proj);
+		free(fdf_data->world);
+		fdf_data->tracker->t_world_loaded = false;
+		exit_program(fdf_data);
+	}
 	init_translate(fdf_data);
 	init_rotate(fdf_data);
 	fdf_data->world->world_m = get_world_matrix(fdf_data->world);
