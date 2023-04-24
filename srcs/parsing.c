@@ -6,11 +6,9 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 09:26:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 09:43:24 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-//TODO : add error management if the file is not well formated
 
 /**
  * @file parsing.c
@@ -65,13 +63,12 @@ static t_vec3d	*create_vec3d_array_from_line(char *line, t_map *map, int y)
 
 	splitted_line = ft_split(line, ' ');
 	if (map->width != (int)ft_array_length((void **)splitted_line))
-	{
-		ft_free_split(splitted_line);
-		return (ft_dprintf(2, "Error parsing file at line %d\n", y + 1), NULL);
-	}
+		return (ft_free_split(splitted_line),
+			ft_dprintf(2, "Error parsing file at line %d\n", y + 1), NULL);
 	vec3d_array = malloc(sizeof(t_vec3d) * map->width);
 	if (!vec3d_array)
-		return (perror("Error when allocating memory for map\n"), NULL);
+		return (ft_free_split(splitted_line),
+			perror("Error when allocating memory for map"), NULL);
 	x = -1;
 	while (++x < map->width)
 	{
