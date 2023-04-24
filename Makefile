@@ -42,6 +42,7 @@ SRCS_LIST		=	main.c				\
 					parsing_util.c		\
 					parsing.c			\
 					projections.c		\
+					tracker.c			\
 					update_camera.c		\
 					update_world.c
 
