@@ -6,13 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 13:24:46 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 13:26:15 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	free_world(t_world_i *world);
+static void	free_world(t_world_i *world, bool t_proj_loaded);
 static void	free_map(t_map *map);
 
 int	exit_program(t_fdf *fdf_data)
