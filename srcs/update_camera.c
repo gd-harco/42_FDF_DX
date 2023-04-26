@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:43:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:07:53 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/26 23:37:49 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,17 @@ void	change_projection(int key, t_fdf *fdf_data)
 	update_translation(fdf_data->world->trans);
 	update_world(fdf_data->world);
 	project_view(fdf_data);
+	draw_all(fdf_data);
+}
+
+void	change_render_mode(t_fdf *fdf_data)
+{
+	if (fdf_data->world->render_type == LINE)
+		fdf_data->world->render_type = POINT;
+	else
+		fdf_data->world->render_type = LINE;
+	fdf_data->world->key_is_pressed = false;
+	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
+	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	draw_all(fdf_data);
 }

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:19:02 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:08:09 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/26 23:33:55 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	loop_hook(t_fdf *fdf_data)
 			zoom(key, fdf_data);
 		else if (key == XK_equal || key == XK_minus)
 			change_altitude(key, fdf_data);
+		else if (key == XK_space)
+			change_render_mode(fdf_data);
 	}
 	return (0);
 }

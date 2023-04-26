@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:01:27 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:01:33 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/26 23:36:52 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	update_translation(t_trans_info *trans);
 void	update_projection(t_proj_info *proj, t_fdf *fdf);
 void	update_world(t_world_i *world);
 void	update_image(t_fdf *fdf_data);
-
+void	change_render_mode(t_fdf *fdf_data);
 #endif

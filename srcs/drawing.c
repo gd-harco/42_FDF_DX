@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:34 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 10:39:02 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/26 23:40:54 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	draw_all(t_fdf *fdf_data)
 		exit_program(fdf_data);
 	while (nb_line)
 	{
-		if (all_line[i]->is_visible)
-			nlx_draw_line(&fdf_data->img, all_line[i], COLOR_BLUE);
+		if (all_line[i]->is_visible && fdf_data->world->render_type == 0)
+			nlx_draw_line(&fdf_data->img, all_line[i], COLOR_WHITE);
+		else if (all_line[i]->is_visible && fdf_data->world->render_type == 1)
+			nlx_draw_points(&fdf_data->img, all_line[i], COLOR_WHITE);
 		i++;
 		free(all_line[i - 1]);
 		nb_line--;

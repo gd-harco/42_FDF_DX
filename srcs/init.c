@@ -27,7 +27,6 @@ static void	get_world(t_fdf *fdf_data);
 static void	init_translate(t_fdf *fdf_data);
 static void	init_rotate(t_fdf *fdf_data);
 
-
 void	sub_init(t_fdf *fdf_data)
 {
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
@@ -65,6 +64,7 @@ static void	get_world(t_fdf *fdf_data)
 	fdf_data->world->key_is_pressed = false;
 	fdf_data->world->key_pressed = 0;
 	fdf_data->world->proj_type = ISO;
+	fdf_data->world->render_type = LINE;
 	fdf_data->world->trans = malloc(sizeof (t_trans_info));
 	fdf_data->world->rot = malloc(sizeof (t_rot_info));
 	fdf_data->world->proj = malloc(sizeof (t_proj_info));
