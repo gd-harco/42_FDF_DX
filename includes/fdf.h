@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:39:07 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 14:59:46 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 15:23:46 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "nlx.h"
 # include "key_handler.h"
 # include "projections.h"
+# include "ui.h"
 # include "update.h"
 # include <stdio.h>
 # include <fcntl.h>

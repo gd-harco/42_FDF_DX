@@ -30,6 +30,7 @@ HEADERS_LIST	=	drawing.h		\
 					map.h			\
 					nlx.h			\
 					projections.h	\
+					ui.h			\
 					update.h
 
 SRCS_LIST		=	main.c				\
@@ -43,6 +44,7 @@ SRCS_LIST		=	main.c				\
 					parsing.c			\
 					projections.c		\
 					tracker.c			\
+					ui.c				\
 					update_camera.c		\
 					update_world.c
 
