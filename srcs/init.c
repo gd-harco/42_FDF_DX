@@ -32,13 +32,11 @@ void	sub_init(t_fdf *fdf_data)
 	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
 	get_world(fdf_data);
 	get_proj(fdf_data);
-	fdf_data->img = malloc(sizeof(t_img) * 2);
+	fdf_data->img = malloc(sizeof(t_img));
 	if (!fdf_data->img)
 		exit_program(fdf_data);
-	nlx_new_image(&fdf_data->img[RENDER],
+	nlx_new_image(fdf_data->img,
 		fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	nlx_new_image(&fdf_data->img[UI],
-		fdf_data->mlx_win->mlx, WIDTH / 4, HEIGHT);
 	fdf_data->tracker->t_img_loaded = true;
 	get_cam_trans_speed(fdf_data);
 	get_cam_rot_speed(fdf_data);
