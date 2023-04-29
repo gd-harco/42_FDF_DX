@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:01:16 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:07:49 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 15:11:14 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,61 +28,61 @@ void	update_world(t_world_i *world)
 	world->world_m = get_world_matrix(world);
 }
 
-void	update_image(t_fdf *fdf_data)
+void	update_image(t_fdf *fdf)
 {
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
-	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj, fdf_data);
-	project_view(fdf_data);
-	draw_all(fdf_data);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
+	nlx_new_image(&fdf->img[RENDER], fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	update_projection(fdf->world->proj, fdf);
+	project_view(fdf);
+	draw_all(fdf);
 }
 
-void	change_fov(int key, t_fdf *fdf_data)
+void	change_fov(int key, t_fdf *fdf)
 {
-	if (fdf_data->world->proj_type == ISO)
+	if (fdf->world->proj_type == ISO)
 		return ;
 	if (key == XK_2)
-		fdf_data->world->proj->fov = 90.0f;
+		fdf->world->proj->fov = 90.0f;
 	else if (key == XK_1)
-		fdf_data->world->proj->fov = 60.0f;
+		fdf->world->proj->fov = 60.0f;
 	else if (key == XK_3)
-		fdf_data->world->proj->fov = 120.0f;
+		fdf->world->proj->fov = 120.0f;
 	else if (key == XK_4)
-		fdf_data->world->proj->fov = 150.0f;
-	fdf_data->world->proj->fov_rad = 1.0f
-		/ tanf(fdf_data->world->proj->fov * 0.5f / 180.0f * (float)M_PI);
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
-	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj, fdf_data);
-	project_view(fdf_data);
-	draw_all(fdf_data);
+		fdf->world->proj->fov = 150.0f;
+	fdf->world->proj->fov_rad = 1.0f
+		/ tanf(fdf->world->proj->fov * 0.5f / 180.0f * (float)M_PI);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
+	nlx_new_image(&fdf->img[RENDER], fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	update_projection(fdf->world->proj, fdf);
+	project_view(fdf);
+	draw_all(fdf);
 }
 
-void	change_altitude(int key, t_fdf *fdf_data)
+void	change_altitude(int key, t_fdf *fdf)
 {
 	int	row;
 	int	col;
 
 	row = 0;
 	if (key == XK_equal)
-		fdf_data->altitude_factor += 0.01f;
+		fdf->altitude_factor += 0.01f;
 	else
-		fdf_data->altitude_factor -= 0.01f;
-	while (row < fdf_data->map->height)
+		fdf->altitude_factor -= 0.01f;
+	while (row < fdf->map->height)
 	{
 		col = 0;
-		while (col < fdf_data->map->width)
+		while (col < fdf->map->width)
 		{
-			fdf_data->map->map_base[row][col].z
-				= fdf_data->map->map_base[row][col].initial_z
-				* fdf_data->altitude_factor;
+			fdf->map->map_base[row][col].z
+				= fdf->map->map_base[row][col].initial_z
+				* fdf->altitude_factor;
 			col++;
 		}
 		row++;
 	}
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
-	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_projection(fdf_data->world->proj, fdf_data);
-	project_view(fdf_data);
-	draw_all(fdf_data);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
+	nlx_new_image(&fdf->img[RENDER], fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	update_projection(fdf->world->proj, fdf);
+	project_view(fdf);
+	draw_all(fdf);
 }
