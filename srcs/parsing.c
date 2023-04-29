@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:57:13 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 17:32:54 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 11:40:53 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ static t_list	*put_file_in_list(int fd)
 	buff = get_next_line(fd);
 	while (buff)
 	{
-		new_node = ft_lstnew(buff, 0);
+		new_node = ft_lstnew(buff);
 		if (new_node == NULL)
 		{
 			ft_lstclear(&list, &free);
