@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:09:47 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/26 23:25:05 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 17:18:23 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 int	main(int argc, char **argv)
 {
-	t_fdf	*fdf_data;
+	t_fdf	*fdf;
 
 	if (argc != 2)
 	{
 		ft_dprintf(STDERR_FILENO, "Usage: ./fdf <filename>.fdf");
 		exit(1);
 	}
-	fdf_data = fdf_init(argv[1]);
-	project_view(fdf_data);
-	fdf_data->tracker->t_proj_loaded = true;
-	draw_all(fdf_data);
-	mlx_hook(fdf_data->mlx_win->win_ptr, KeyPress,
-		KeyPressMask, key_handler_in, fdf_data);
-	mlx_hook(fdf_data->mlx_win->win_ptr, KeyRelease,
-		KeyReleaseMask, key_handler_out, fdf_data);
-	mlx_loop_hook(fdf_data->mlx_win->mlx, loop_hook, fdf_data);
-	mlx_hook(fdf_data->mlx_win->win_ptr, 17, 0, exit_program, fdf_data);
-	mlx_loop(fdf_data->mlx_win->mlx);
+	fdf = fdf_init(argv[1]);
+	project_view(fdf);
+	fdf->tracker->t_proj_loaded = true;
+	draw_all(fdf);
+	mlx_hook(fdf->mlx_win->win_ptr, KeyPress,
+		KeyPressMask, key_handler_in, fdf);
+	mlx_hook(fdf->mlx_win->win_ptr, KeyRelease,
+		KeyReleaseMask, key_handler_out, fdf);
+	mlx_loop_hook(fdf->mlx_win->mlx, loop_hook, fdf);
+	mlx_hook(fdf->mlx_win->win_ptr, 17, 0, exit_program, fdf);
+	mlx_loop(fdf->mlx_win->mlx);
 	return (0);
 }
 
