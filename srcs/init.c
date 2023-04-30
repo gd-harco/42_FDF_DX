@@ -29,20 +29,20 @@ static void	init_rotate(t_fdf *fdf);
 
 void	sub_init(t_fdf *fdf)
 {
-	nlx_win_init(fdf->mlx_win, WIDTH, HEIGHT, "FDF");
-	get_world(fdf);
-	get_proj(fdf);
-	fdf->img = malloc(sizeof(t_img) * 2);
-	if (!fdf->img)
-		exit_program(fdf);
-	nlx_new_image(&fdf->img[RENDER],
-		fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	nlx_win_init(fdf_data->mlx_win, WIDTH, HEIGHT, "FDF");
+	get_world(fdf_data);
+	get_proj(fdf_data);
+	fdf_data->img = malloc(sizeof(t_img) * 2);
+	if (!fdf_data->img)
+		exit_program(fdf_data);
+	nlx_new_image(&fdf_data->img[RENDER],
+		fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
 	nlx_new_image(&fdf_data->img[UI],
 		fdf_data->mlx_win->mlx, WIDTH / 4, HEIGHT);
-	fdf->tracker->t_img_loaded = true;
-	get_cam_trans_speed(fdf);
-	get_cam_rot_speed(fdf);
-	get_cam_zoom_speed(fdf);
+	fdf_data->tracker->t_img_loaded = true;
+	get_cam_trans_speed(fdf_data);
+	get_cam_rot_speed(fdf_data);
+	get_cam_zoom_speed(fdf_data);
 }
 
 static void	get_proj(t_fdf *fdf)
