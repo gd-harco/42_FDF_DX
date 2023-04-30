@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:34 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 16:24:38 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 16:31:12 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,31 @@ static void			create_line_duet(
 static t_nlx_line	**get_all_line(
 						t_fdf *fdf, t_vec3d **dmap, int *nb_line);
 
-void	draw_all(t_fdf *fdf_data)
+void	draw_all(t_fdf *fdf)
 {
 	t_nlx_line	**all_line;
 	int			nb_line;
 	int			i;
 
 	i = 0;
-	all_line = get_all_line(fdf_data,
-			fdf_data->map->map_projected, &nb_line);
+	all_line = get_all_line(fdf,
+			fdf->map->map_projected, &nb_line);
 	if (all_line == NULL || check_for_null(all_line, nb_line))
-		exit_program(fdf_data);
+		exit_program(fdf);
 	while (nb_line)
 	{
-		if (all_line[i]->is_visible && fdf_data->world->render_type == 0)
-			nlx_draw_line(fdf_data->img, all_line[i], COLOR_WHITE);
-		else if (all_line[i]->is_visible && fdf_data->world->render_type == 1)
-			nlx_draw_points(fdf_data->img, all_line[i], COLOR_WHITE);
+		if (all_line[i]->is_visible && fdf->world->render_type == 0)
+			nlx_draw_line(fdf->img, all_line[i], COLOR_WHITE);
+		else if (all_line[i]->is_visible && fdf->world->render_type == 1)
+			nlx_draw_points(fdf->img, all_line[i], COLOR_WHITE);
 		i++;
 		free(all_line[i - 1]);
 		nb_line--;
 	}
 	free(all_line);
-	mlx_put_image_to_window(fdf_data->mlx_win->mlx,
-		fdf_data->mlx_win->win_ptr, fdf_data->img->img_ptr, 0, 0);
-	draw_ui(fdf_data);
+	mlx_put_image_to_window(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, fdf->img->img_ptr, 0, 0);
+	draw_ui(fdf);
 }
 
 /**

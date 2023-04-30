@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:43:09 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 16:27:04 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 16:31:12 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,42 @@ void	update_translation(t_trans_info *trans)
 	trans->m = get_translation_matrix(trans);
 }
 
-void	change_projection(int key, t_fdf *fdf_data)
+void	change_projection(int key, t_fdf *fdf)
 {
 	if (key == XK_i)
 	{
-		fdf_data->world->rot->rot_x = -120 * M_PI / 180.0f;
-		fdf_data->world->rot->rot_y = 0.0f;
-		fdf_data->world->rot->rot_z = 45 * M_PI / 180.0f;
-		fdf_data->world->proj->current_m = fdf_data->world->proj->iso_m;
-		fdf_data->world->proj_type = ISO;
+		fdf->world->rot->rot_x = -120 * M_PI / 180.0f;
+		fdf->world->rot->rot_y = 0.0f;
+		fdf->world->rot->rot_z = 45 * M_PI / 180.0f;
+		fdf->world->proj->current_m = fdf->world->proj->iso_m;
+		fdf->world->proj_type = ISO;
 	}
 	else if (key == XK_p)
 	{
-		fdf_data->world->rot->rot_x = (-(M_PI / 4.0f));
-		fdf_data->world->rot->rot_y = 0.0f;
-		fdf_data->world->rot->rot_z = 0.0f;
-		fdf_data->world->trans->translate_x = 0.0f;
-		fdf_data->world->proj->current_m = fdf_data->world->proj->persp_m;
-		fdf_data->world->proj_type = PERSP;
+		fdf->world->rot->rot_x = (-(M_PI / 4.0f));
+		fdf->world->rot->rot_y = 0.0f;
+		fdf->world->rot->rot_z = 0.0f;
+		fdf->world->trans->translate_x = 0.0f;
+		fdf->world->proj->current_m = fdf->world->proj->persp_m;
+		fdf->world->proj_type = PERSP;
 	}
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img->img_ptr);
-	nlx_new_image(fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	update_rotation(fdf_data->world->rot);
-	update_translation(fdf_data->world->trans);
-	update_world(fdf_data->world);
-	project_view(fdf_data);
-	draw_all(fdf_data);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img->img_ptr);
+	nlx_new_image(fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	update_rotation(fdf->world->rot);
+	update_translation(fdf->world->trans);
+	update_world(fdf->world);
+	project_view(fdf);
+	draw_all(fdf);
 }
 
-void	change_render_mode(t_fdf *fdf_data)
+void	change_render_mode(t_fdf *fdf)
 {
-	if (fdf_data->world->render_type == LINE)
-		fdf_data->world->render_type = POINT;
+	if (fdf->world->render_type == LINE)
+		fdf->world->render_type = POINT;
 	else
-		fdf_data->world->render_type = LINE;
-	fdf_data->world->key_is_pressed = false;
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img->img_ptr);
-	nlx_new_image(fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
-	draw_all(fdf_data);
+		fdf->world->render_type = LINE;
+	fdf->world->key_is_pressed = false;
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img->img_ptr);
+	nlx_new_image(fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	draw_all(fdf);
 }

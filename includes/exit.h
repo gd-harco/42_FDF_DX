@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/23 15:08:04 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 16:31:12 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "init.h"
 
-int		exit_program(t_fdf *fdf_data);
+int		exit_program(t_fdf *fdf);
 void	exit_file_not_regular(t_map *map, t_vec3d **vec3d_array);
 
 #endif
