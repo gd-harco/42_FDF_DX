@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:01:16 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 15:11:14 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 16:27:50 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	update_world(t_world_i *world)
 
 void	update_image(t_fdf *fdf)
 {
-	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
-	nlx_new_image(&fdf->img[RENDER], fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img->img_ptr);
+	nlx_new_image(fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
 	update_projection(fdf->world->proj, fdf);
 	project_view(fdf);
 	draw_all(fdf);
@@ -51,8 +51,8 @@ void	change_fov(int key, t_fdf *fdf)
 		fdf->world->proj->fov = 150.0f;
 	fdf->world->proj->fov_rad = 1.0f
 		/ tanf(fdf->world->proj->fov * 0.5f / 180.0f * (float)M_PI);
-	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
-	nlx_new_image(&fdf->img[RENDER], fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img->img_ptr);
+	nlx_new_image(fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
 	update_projection(fdf->world->proj, fdf);
 	project_view(fdf);
 	draw_all(fdf);
@@ -80,8 +80,8 @@ void	change_altitude(int key, t_fdf *fdf)
 		}
 		row++;
 	}
-	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
-	nlx_new_image(&fdf->img[RENDER], fdf->mlx_win->mlx, WIDTH, HEIGHT);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img->img_ptr);
+	nlx_new_image(fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
 	update_projection(fdf->world->proj, fdf);
 	project_view(fdf);
 	draw_all(fdf);

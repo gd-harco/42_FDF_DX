@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:34 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 17:19:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 16:24:38 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	draw_all(t_fdf *fdf_data)
 	while (nb_line)
 	{
 		if (all_line[i]->is_visible && fdf_data->world->render_type == 0)
-			nlx_draw_line(&fdf_data->img[RENDER], all_line[i], COLOR_WHITE);
+			nlx_draw_line(fdf_data->img, all_line[i], COLOR_WHITE);
 		else if (all_line[i]->is_visible && fdf_data->world->render_type == 1)
-			nlx_draw_points(&fdf_data->img[RENDER], all_line[i], COLOR_WHITE);
+			nlx_draw_points(fdf_data->img, all_line[i], COLOR_WHITE);
 		i++;
 		free(all_line[i - 1]);
 		nb_line--;
 	}
 	free(all_line);
 	mlx_put_image_to_window(fdf_data->mlx_win->mlx,
-		fdf_data->mlx_win->win_ptr, fdf_data->img[RENDER].img_ptr, 0, 0);
+		fdf_data->mlx_win->win_ptr, fdf_data->img->img_ptr, 0, 0);
 	draw_ui(fdf_data);
 }
 
@@ -82,10 +82,10 @@ static void	create_line_duet(t_fdf *fdf, t_vec3d **dmap, t_nlx_line **lines)
 		{
 			if (col + 1 < fdf->map->width)
 				lines[i++] = create_line
-					(&dmap[row][col], &dmap[row][col + 1], &fdf->img[RENDER]);
+					(&dmap[row][col], &dmap[row][col + 1], fdf->img);
 			if (row + 1 < fdf->map->height)
 				lines[i++] = create_line
-					(&dmap[row][col], &dmap[row + 1][col], &fdf->img[RENDER]);
+					(&dmap[row][col], &dmap[row + 1][col], fdf->img);
 			col++;
 		}
 		row++;
