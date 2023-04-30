@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:34 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 17:19:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 17:46:25 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	draw_all(t_fdf *fdf_data)
 		nb_line--;
 	}
 	free(all_line);
-	mlx_put_image_to_window(fdf_data->mlx_win->mlx,
-		fdf_data->mlx_win->win_ptr, fdf_data->img[RENDER].img_ptr, 0, 0);
-	draw_ui(fdf_data);
+	mlx_put_image_to_window(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, fdf->img[RENDER].img_ptr, 0, 0);
+	draw_ui(fdf_data->mlx_win->mlx, fdf_data->mlx_win->win_ptr);
 }
 
 /**

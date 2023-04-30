@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:20:39 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 17:18:30 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 17:50:43 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TEXT_EXIT "ESC / Q : quit the program"
 
 //-----------------FUNCTIONS-----------------//
-void	draw_ui(t_fdf *fdf);
+void	draw_ui(void *mlx_ptr, void *win_ptr)
+
 
 #endif
