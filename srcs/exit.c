@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 15:03:32 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 13:15:41 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	exit_program(t_fdf *fdf)
 {
 	if (fdf->tracker->t_img_loaded)
 	{
-		mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[RENDER].img_ptr);
-		mlx_destroy_image(fdf->mlx_win->mlx, fdf->img[UI].img_ptr);
+		mlx_destroy_image(fdf->mlx_win->mlx, fdf->img->img_ptr);
 		free(fdf->img);
 	}
 	if (fdf->tracker->t_win_loaded)
