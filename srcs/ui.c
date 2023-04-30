@@ -6,26 +6,29 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:23:51 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 18:52:44 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 19:33:53 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#define COLOR_TEXT COLOR_SAND
 
 void	draw_ui(t_fdf *fdf)
 {
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 20, COLOR_WHITE, TEXT_EXIT);
+		fdf->mlx_win->win_ptr, 10, 540 -175, COLOR_TEXT, TEXT_ROT);
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 40, COLOR_WHITE, TEXT_ROT);
+		fdf->mlx_win->win_ptr, 10, 540 - 125, COLOR_TEXT, TEXT_MOVE);
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 60, COLOR_WHITE, TEXT_MOVE);
+		fdf->mlx_win->win_ptr, 10, 540 - 75, COLOR_TEXT, TEXT_ZOOM);
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 80, COLOR_WHITE, TEXT_ZOOM);
+		fdf->mlx_win->win_ptr, 10, 540 - 25, COLOR_TEXT, TEXT_HEIGHT);
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 100, COLOR_WHITE, TEXT_HEIGHT);
+		fdf->mlx_win->win_ptr, 10, 540 + 25, COLOR_TEXT, TEXT_ISO);
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 120, COLOR_WHITE, TEXT_ISO);
+		fdf->mlx_win->win_ptr, 10, 540 + 75, COLOR_TEXT, TEXT_PERSP);
 	mlx_string_put(fdf->mlx_win->mlx,
-		fdf->mlx_win->win_ptr, 10, 140, COLOR_WHITE, TEXT_PERSP);
+		fdf->mlx_win->win_ptr, 10, 540 + 125, COLOR_TEXT, TEXT_RENDER);
+	mlx_string_put(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, 10, 540 + 175, COLOR_TEXT, TEXT_EXIT);
 }
