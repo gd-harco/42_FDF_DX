@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:39:07 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/29 15:23:46 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 13:42:50 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # include <fcntl.h>
 # include <X11/X.h>
 
-# define RENDER 0
-# define UI 1
 # ifndef WIDTH
 #  define WIDTH 1920
 # endif

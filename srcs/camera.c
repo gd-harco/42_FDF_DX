@@ -6,18 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 15:34:40 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 13:14:04 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	get_cam_rot_speed(t_fdf *fdf_data)
+void	get_cam_rot_speed(t_fdf *fdf)
 {
 	int	n;
 	int	i;
 
-	n = fdf_data->map->height * fdf_data->map->width;
+	n = fdf->map->height * fdf->map->width;
 	i = 10;
 	while (n)
 	{
@@ -25,23 +25,23 @@ void	get_cam_rot_speed(t_fdf *fdf_data)
 		n /= 10;
 	}
 	if (i == 0)
-		fdf_data->cam_rot_speed = (0.25f * 1.0f * 0.025);
+		fdf->cam_rot_speed = (0.25f * 1.0f * 0.025);
 	else
-		fdf_data->cam_rot_speed = (0.25f * (float)i * 0.025);
+		fdf->cam_rot_speed = (0.25f * (float)i * 0.025);
 }
 
-void	get_cam_zoom_speed(t_fdf *fdf_data)
+void	get_cam_zoom_speed(t_fdf *fdf)
 {
-	fdf_data->cam_zoom_speed = fdf_data->cam_rot_speed * 3;
+	fdf->cam_zoom_speed = fdf->cam_rot_speed * 3;
 }
 
-void	get_cam_trans_speed(t_fdf *fdf_data)
+void	get_cam_trans_speed(t_fdf *fdf)
 {
 	int		multiplied;
 	int		divisor;
 	double	tmp;
 
-	multiplied = fdf_data->map->height * fdf_data->map->width;
+	multiplied = fdf->map->height * fdf->map->width;
 	tmp = multiplied;
 	divisor = 1;
 	while (multiplied)
@@ -51,6 +51,6 @@ void	get_cam_trans_speed(t_fdf *fdf_data)
 	}
 	tmp = tmp / (float)divisor;
 	if (tmp > 500.0)
-		fdf_data->cam_trans_speed = (tmp * 0.0001);
-	fdf_data->cam_trans_speed = (0.25);
+		fdf->cam_trans_speed = (tmp * 0.0001);
+	fdf->cam_trans_speed = (0.25);
 }

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:14:52 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/24 12:02:04 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/30 13:19:27 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@ static void	set_visibility(t_vec3d *vec, float z_near);
 static void	scale_in_view(t_vec3d *to_scale);
 static void	scale_in_view_iso(t_vec3d *to_scale);
 
-void	project_view(t_fdf *fdf_data)
+void	project_view(t_fdf *fdf)
 {
 	int			row;
 	int			col;
 	t_vec3d		tmp;
 
 	row = 0;
-	fdf_data->map->highest_point = -fdf_data->map->highest_point;
-	while (row < fdf_data->map->height)
+	fdf->map->highest_point = -fdf->map->highest_point;
+	while (row < fdf->map->height)
 	{
 		col = 0;
-		while (col < fdf_data->map->width)
+		while (col < fdf->map->width)
 		{
-			multiply_vector_matrix(fdf_data->world->world_m,
-				&fdf_data->map->map_base[row][col], &tmp);
-			multiply_vector_matrix(fdf_data->world->proj->current_m,
-				&tmp, &fdf_data->map->map_projected[row][col]);
-			if (fdf_data->world->proj_type == PERSP)
-				scale_in_view(&fdf_data->map->map_projected[row][col]);
-			if (fdf_data->world->proj_type == ISO)
-				scale_in_view_iso(&fdf_data->map->map_projected[row][col]);
-			set_visibility(&fdf_data->map->map_projected[row][col],
-				fdf_data->world->proj->z_near);
+			multiply_vector_matrix(fdf->world->world_m,
+				&fdf->map->map_base[row][col], &tmp);
+			multiply_vector_matrix(fdf->world->proj->current_m,
+				&tmp, &fdf->map->map_projected[row][col]);
+			if (fdf->world->proj_type == PERSP)
+				scale_in_view(&fdf->map->map_projected[row][col]);
+			if (fdf->world->proj_type == ISO)
+				scale_in_view_iso(&fdf->map->map_projected[row][col]);
+			set_visibility(&fdf->map->map_projected[row][col],
+				fdf->world->proj->z_near);
 			col++;
 		}
 		row++;

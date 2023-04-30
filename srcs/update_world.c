@@ -30,8 +30,8 @@ void	update_world(t_world_i *world)
 
 void	update_image(t_fdf *fdf)
 {
-	mlx_destroy_image(fdf_data->mlx_win->mlx, fdf_data->img.img_ptr);
-	nlx_new_image(&fdf_data->img, fdf_data->mlx_win->mlx, WIDTH, HEIGHT);
+	mlx_destroy_image(fdf->mlx_win->mlx, fdf->img.img_ptr);
+	nlx_new_image(&fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
 	update_projection(fdf->world->proj, fdf);
 	project_view(fdf);
 	draw_all(fdf);
