@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:29:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 16:28:57 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/05/01 11:52:59 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	exit_program(t_fdf *fdf)
 	if (fdf->tracker->t_map_loaded)
 		free_map(fdf->map);
 	free(fdf->tracker);
+	free(fdf->map_name);
 	free(fdf);
 	close(0);
 	close(1);

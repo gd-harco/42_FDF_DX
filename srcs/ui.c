@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:23:51 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 19:33:53 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/05/01 11:54:49 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	draw_ui(t_fdf *fdf)
 {
+	mlx_string_put(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, 1920 / 2 - 50, 30, COLOR_TEXT, fdf->map_name);
 	mlx_string_put(fdf->mlx_win->mlx,
 		fdf->mlx_win->win_ptr, 10, 540 -175, COLOR_TEXT, TEXT_ROT);
 	mlx_string_put(fdf->mlx_win->mlx,

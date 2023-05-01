@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:46:29 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 16:31:12 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/05/01 11:45:15 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_fdf
 	float		cam_trans_speed;
 	float		cam_zoom_speed;
 	t_tracker	*tracker;
+	char		*map_name;
 }				t_fdf;
 
 t_fdf	*fdf_init(char *file);

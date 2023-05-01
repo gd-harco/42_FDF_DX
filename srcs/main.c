@@ -6,11 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:09:47 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/30 16:31:12 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/05/01 11:52:38 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	get_map_name(t_fdf *fdf, char *file);
 
 int	main(int argc, char **argv)
 {
@@ -48,6 +50,7 @@ t_fdf	*fdf_init(char *file)
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		exit (1);
+	get_map_name(fdf, file);
 	init_tracker(fdf);
 	fdf->altitude_factor = 1.0f;
 	fdf->map = init_map(file);
@@ -64,4 +67,18 @@ t_fdf	*fdf_init(char *file)
 		exit_program(fdf);
 	sub_init(fdf);
 	return (fdf);
+}
+
+void	get_map_name(t_fdf *fdf, char *file)
+{
+	int		i;
+	char	*tmp;
+
+	i = ft_strlen(file);
+	while (i > 0 && file[i] != '/')
+		i--;
+	tmp = ft_strdup(&file[i + 1]);
+	fdf->map_name = ft_strjoin("Map loaded: ", tmp);
+	free(tmp);
+	ft_printf("Map name: %s\n", fdf->map_name);
 }
