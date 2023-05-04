@@ -80,5 +80,4 @@ void	get_map_name(t_fdf *fdf, char *file)
 	tmp = ft_strdup(&file[i + 1]);
 	fdf->map_name = ft_strjoin("Map loaded: ", tmp);
 	free(tmp);
-	ft_printf("Map name: %s\n", fdf->map_name);
 }
