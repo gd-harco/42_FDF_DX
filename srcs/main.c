@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	get_map_name(t_fdf *fdf, char *file);
+static void	get_map_name(t_fdf *fdf, char *file);
 
 int	main(int argc, char **argv)
 {
@@ -69,7 +69,7 @@ t_fdf	*fdf_init(char *file)
 	return (fdf);
 }
 
-void	get_map_name(t_fdf *fdf, char *file)
+static void	get_map_name(t_fdf *fdf, char *file)
 {
 	int		i;
 	char	*tmp;
