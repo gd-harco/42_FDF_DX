@@ -25,6 +25,9 @@
 # define TEXT_PERSP "P : switch to perspective projection"
 # define TEXT_EXIT "ESC / Q : quit the program"
 # define TEXT_RENDER "Space : toggle render mode"
+# define TEXT_FOV "1, 2, 3, 4 : change FOV"
+# define TEXT_ZOOM_SPEED "F1, F2 : change camera zoom speed"
+# define TEXT_MOV_SPEED "F5, F6 : change camera translation speed"
 
 //-----------------FUNCTIONS-----------------//
 void	draw_ui(t_fdf *fdf);

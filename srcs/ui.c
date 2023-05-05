@@ -13,6 +13,8 @@
 #include "fdf.h"
 #define COLOR_TEXT COLOR_SAND
 
+static void	draw_ui_2(t_fdf *fdf);
+
 void	draw_ui(t_fdf *fdf)
 {
 	mlx_string_put(fdf->mlx_win->mlx,
@@ -31,6 +33,20 @@ void	draw_ui(t_fdf *fdf)
 		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 75, COLOR_TEXT, TEXT_PERSP);
 	mlx_string_put(fdf->mlx_win->mlx,
 		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 125, COLOR_TEXT, TEXT_RENDER);
+	draw_ui_2(fdf);
+}
+
+static void	draw_ui_2(t_fdf *fdf)
+{
+
 	mlx_string_put(fdf->mlx_win->mlx,
 		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 175, COLOR_TEXT, TEXT_EXIT);
+	mlx_string_put(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 225, COLOR_TEXT, TEXT_FOV);
+	mlx_string_put(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 275,
+		COLOR_TEXT, TEXT_ZOOM_SPEED);
+	mlx_string_put(fdf->mlx_win->mlx,
+		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 325,
+		COLOR_TEXT, TEXT_MOV_SPEED);
 }
