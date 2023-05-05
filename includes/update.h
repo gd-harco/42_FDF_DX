@@ -20,4 +20,5 @@ void	update_projection(t_proj_info *proj, t_fdf *fdf);
 void	update_world(t_world_i *world);
 void	update_image(t_fdf *fdf);
 void	change_render_mode(t_fdf *fdf);
+void	change_cam_speed(int key, t_fdf *fdf);
 #endif
