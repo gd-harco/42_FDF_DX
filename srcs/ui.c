@@ -38,7 +38,6 @@ void	draw_ui(t_fdf *fdf)
 
 static void	draw_ui_2(t_fdf *fdf)
 {
-
 	mlx_string_put(fdf->mlx_win->mlx,
 		fdf->mlx_win->win_ptr, 10, (HEIGHT / 2) + 175, COLOR_TEXT, TEXT_EXIT);
 	mlx_string_put(fdf->mlx_win->mlx,

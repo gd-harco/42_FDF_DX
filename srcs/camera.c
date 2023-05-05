@@ -18,17 +18,14 @@ every other map will be scaled to fit these values*/
 void	get_cam_rot_speed(t_fdf *fdf)
 {
 	fdf->cam_rot_speed = 0.03f;
-	printf("fdf->cam_rot_speed = %f\n", fdf->cam_rot_speed);
 }
 
 void	get_cam_zoom_speed(t_fdf *fdf)
 {
 	fdf->cam_zoom_speed = fdf->cam_rot_speed * 3;
-	printf("fdf->cam_zoom_speed = %f\n", fdf->cam_zoom_speed);
 }
 
 void	get_cam_trans_speed(t_fdf *fdf)
 {
 	fdf->cam_trans_speed = (0.10f);
-	printf("fdf->cam_trans_speed = %f\n", fdf->cam_trans_speed);
 }
