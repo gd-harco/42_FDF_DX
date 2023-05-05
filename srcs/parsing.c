@@ -164,10 +164,8 @@ static t_list	*put_file_in_list(int fd)
 	t_list	*list;
 	t_list	*new_node;
 	char	*buff;
-	int		nb_line;
 
 	list = NULL;
-	nb_line = 1;
 	buff = get_next_line(fd);
 	while (buff)
 	{
@@ -179,7 +177,6 @@ static t_list	*put_file_in_list(int fd)
 		}
 		ft_lstadd_back(&list, new_node);
 		buff = get_next_line(fd);
-		nb_line++;
 	}
 	return (list);
 }
