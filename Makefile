@@ -80,7 +80,7 @@ all				:	${OBJS} ${HEADERS}
 
 # ---- Variables Rules ---- #
 
-${NAME}			:	${OBJS} ${HEADERS}
+${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${NLX}
 					${CC} ${CFLAGS} -I ${DIR_HEADERS} -I ${DIR_HEADERS_NLX} ${OBJS} ${FRAMEWORKS} -o ${NAME}
 
 # ---- Compiled Rules ---- #
