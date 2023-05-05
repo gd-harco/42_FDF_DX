@@ -69,14 +69,13 @@ MKDIR			=	mkdir -p
 
 # ********* RULES ******** #
 
-all				:
-					git submodule update --init --recursive
-					make all_post_init
-
-all_post_init	:	${OBJS} ${HEADERS}
+all				:	${OBJS} ${HEADERS}
 					make -C lib/libft
 					make -C lib/new_libx
 					make ${NAME}
+
+init			:
+					git submodule update --init --recursive
 
 # ---- Variables Rules ---- #
 
