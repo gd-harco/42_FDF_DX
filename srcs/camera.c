@@ -12,45 +12,23 @@
 
 #include "fdf.h"
 
+/*Base values set for the map "42.fdf", which is 19x11
+every other map will be scaled to fit these values*/
+
 void	get_cam_rot_speed(t_fdf *fdf)
 {
-	int	n;
-	int	i;
-
-	n = fdf->map->height * fdf->map->width;
-	i = 10;
-	while (n)
-	{
-		i--;
-		n /= 10;
-	}
-	if (i == 0)
-		fdf->cam_rot_speed = (0.25f * 1.0f * 0.025);
-	else
-		fdf->cam_rot_speed = (0.25f * (float)i * 0.025);
+	fdf->cam_rot_speed = 0.03f;
+	printf("fdf->cam_rot_speed = %f\n", fdf->cam_rot_speed);
 }
 
 void	get_cam_zoom_speed(t_fdf *fdf)
 {
 	fdf->cam_zoom_speed = fdf->cam_rot_speed * 3;
+	printf("fdf->cam_zoom_speed = %f\n", fdf->cam_zoom_speed);
 }
 
 void	get_cam_trans_speed(t_fdf *fdf)
 {
-	int		multiplied;
-	int		divisor;
-	double	tmp;
-
-	multiplied = fdf->map->height * fdf->map->width;
-	tmp = multiplied;
-	divisor = 1;
-	while (multiplied)
-	{
-		multiplied /= 10;
-		divisor++;
-	}
-	tmp = tmp / (float)divisor;
-	if (tmp > 500.0)
-		fdf->cam_trans_speed = (tmp * 0.0001);
-	fdf->cam_trans_speed = (0.25);
+	fdf->cam_trans_speed = (0.10f);
+	printf("fdf->cam_trans_speed = %f\n", fdf->cam_trans_speed);
 }
