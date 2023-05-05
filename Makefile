@@ -69,10 +69,11 @@ MKDIR			=	mkdir -p
 
 # ********* RULES ******** #
 
-all				:
+all				:	${OBJS} ${HEADERS}
 					make -C lib/libft
 					make -C lib/new_libx
-					make ${NAME}
+					${CC} ${CFLAGS} -I ${DIR_HEADERS} -I ${DIR_HEADERS_NLX} ${OBJS} ${FRAMEWORKS} -o ${NAME}
+					#make ${NAME}
 
 # ---- Variables Rules ---- #
 
