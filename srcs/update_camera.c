@@ -30,7 +30,7 @@ void	update_translation(t_trans_info *trans)
 
 void	change_projection(int key, t_fdf *fdf)
 {
-	if (key == XK_i)
+	if (key == XK_i && fdf->world->proj_type != ISO)
 	{
 		fdf->world->rot->rot_x = -120 * M_PI / 180.0f;
 		fdf->world->rot->rot_y = 0.0f;
@@ -38,7 +38,7 @@ void	change_projection(int key, t_fdf *fdf)
 		fdf->world->proj->current_m = fdf->world->proj->iso_m;
 		fdf->world->proj_type = ISO;
 	}
-	else if (key == XK_p)
+	else if (key == XK_p && fdf->world->proj_type != PERSP)
 	{
 		fdf->world->rot->rot_x = (-(M_PI / 4.0f));
 		fdf->world->rot->rot_y = 0.0f;
