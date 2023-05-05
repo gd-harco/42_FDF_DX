@@ -19,6 +19,7 @@
 int		loop_hook(t_fdf *fdf);
 int		key_handler_in(int key, t_fdf *fdf);
 int		key_handler_out(int key, t_fdf *fdf);
+int		change_cam(int key, t_fdf *fdf);
 void	translate(int key, t_fdf *fdf);
 void	rotate(int key, t_fdf *fdf);
 void	zoom(int key, t_fdf *fdf);

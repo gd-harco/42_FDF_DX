@@ -67,3 +67,29 @@ void	change_render_mode(t_fdf *fdf)
 	nlx_new_image(fdf->img, fdf->mlx_win->mlx, WIDTH, HEIGHT);
 	draw_all(fdf);
 }
+
+void	change_cam_speed(int key, t_fdf *fdf)
+{
+	if (key == XK_F1)
+	{
+		if (fdf->cam_zoom_speed > 1)
+			fdf->cam_zoom_speed -= 1;
+	}
+	else if (key == XK_F2)
+	{
+		if (fdf->cam_zoom_speed < 7)
+			fdf->cam_zoom_speed += 1;
+	}
+	else if (key == XK_F5)
+	{
+		if (fdf->cam_trans_speed > 1)
+			fdf->cam_trans_speed -= 1;
+	}
+	else if (key == XK_F6)
+	{
+		if (fdf->cam_trans_speed < 7)
+			fdf->cam_trans_speed += 1;
+	}
+	fdf->world->key_is_pressed = false;
+	fdf->world->key_pressed = 0;
+}
