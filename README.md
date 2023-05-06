@@ -14,7 +14,6 @@ The fdf project involves creating a program that reads in a file containing alti
 
 To accomplish this, the program must first read in the file containing altitude data and parse the data to create a two-dimensional array representing the landscape. The program must then use this array to calculate the coordinates of each point in the wireframe mesh and draw lines between these points using the minilibx library.
 
-
 ## 🛠️Dependencies
 As this project uses the minilibx library, it requires the following dependencies to be launched on your system:
 - gcc
@@ -31,6 +30,18 @@ Due to the current makefile, the project can only be compiled and run on a Linux
 
 The Minilibx library is already included in the project.
 
+## 💽 Usage
+To compile the program, run the following command:
+```shell
+make
+```
+It will first init the 2 required libraries submodules, then compile the program and create an executable called fdf.
+
+Then run the program with the following command:
+```shell
+./fdf [map_file.fdf]
+```
+You can find some map files in the "test_maps" folder.
 
 ##  ⚠️ Warning
 This project is a part of the 42-Cursus curriculum and is intended for educational purposes. If you are a current student of 42, we strongly advise you not to copy this project or submit it as your own work, as it goes against the school's academic integrity policy. We will not be responsible for any misuse of the project or academic penalties that may arise from it. However, you are welcome to use this project as a reference or for learning purposes.
