@@ -14,6 +14,24 @@ The fdf project involves creating a program that reads in a file containing alti
 
 To accomplish this, the program must first read in the file containing altitude data and parse the data to create a two-dimensional array representing the landscape. The program must then use this array to calculate the coordinates of each point in the wireframe mesh and draw lines between these points using the minilibx library.
 
+
+## 🛠️Dependencies
+As this project uses the minilibx library, it requires the following dependencies to be launched on your system:
+- gcc
+- make
+- X11 include files (package xorg)
+- XShm extension must be present (package libxext-dev)
+- Utility functions from BSD systems - development files (package libbsd-dev)
+
+The following command can be used to install these dependencies on Ubuntu:
+```shell
+sudo apt-get install gcc make xorg libxext-dev libbsd-dev
+```
+Due to the current makefile, the project can only be compiled and run on a Linux system, or on Windows using the Windows Subsystem for Linux (WSL).
+
+The Minilibx library is already included in the project.
+
+
 ##  ⚠️ Warning
 This project is a part of the 42-Cursus curriculum and is intended for educational purposes. If you are a current student of 42, we strongly advise you not to copy this project or submit it as your own work, as it goes against the school's academic integrity policy. We will not be responsible for any misuse of the project or academic penalties that may arise from it. However, you are welcome to use this project as a reference or for learning purposes.
 
