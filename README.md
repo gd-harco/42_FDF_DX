@@ -52,9 +52,9 @@ This project is a part of the 42-Cursus curriculum and is intended for education
 <a href="https://github.com/JaeSeoKim/badge42"><img src="https://badge42.vercel.app/api/v2/cle01db6o00650fmmx6igm6z3/stats?cursusId=21&coalitionId=305" alt="gd-harco's 42 stats" /></a>
 
 ## 📷 Screenshot
-Base map :
+### Base map :
 ![image](https://user-images.githubusercontent.com/93791134/236661680-6222ffa4-b812-4b82-afb2-738ef7737ca2.png)
-# Render :
+### Render :
 ![image](https://user-images.githubusercontent.com/93791134/236661710-423e2adf-6b48-474b-a1e8-f4ee5c2d94cc.png)
 
 ![image](https://user-images.githubusercontent.com/93791134/236643289-7366a84f-25c9-4e18-999b-bc59fdd9a6ad.png)
